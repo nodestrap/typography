@@ -1,0 +1,41 @@
+// Secondary typography
+// A secondary / less important text
+
+
+
+@use "dependencies" as *;
+
+
+
+$class                          : ".secondary, small"   !default;
+$var-root                       : ":root"               !default;
+$var-prefix                     : "secondary"           !default;
+
+$color                          : unset                 !default;
+$opacity                        : 0.5                   !default;
+
+
+
+$_cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $_cssvar: "--";
+} @else {
+    $_cssvar: "--#{$var-prefix}-";
+}
+@mixin css-vars {
+    #{$_cssvar}color        : #{$color};
+    #{$_cssvar}opacity      : #{$opacity};
+}
+@if ($var-root) {
+    #{$var-root} { @include css-vars; }
+}
+
+
+
+@mixin secondary {
+    color   : var(#{$_cssvar}color); // currentColor
+    opacity : var(#{$_cssvar}opacity);
+}
+@if ($class) {
+    #{$class} { @include secondary; }
+}

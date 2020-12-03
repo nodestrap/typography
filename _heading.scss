@@ -1,0 +1,66 @@
+// Heading typography
+// A title text
+
+
+
+@use "dependencies" as *;
+
+
+
+$var-root                       : ":root"               !default;
+$var-prefix                     : "heading"             !default;
+
+$font-size-h6                   : rems(/*1.00 rems*/ 16/*px*/) !default;
+$font-size-h5                   : rems(/*1.25 rems*/ 20/*px*/) !default;
+$font-size-h4                   : rems(/*1.50 rems*/ 24/*px*/) !default;
+$font-size-h3                   : rems(/*1.75 rems*/ 28/*px*/) !default;
+$font-size-h2                   : rems(/*2.00 rems*/ 32/*px*/) !default;
+$font-size-h1                   : rems(/*2.25 rems*/ 36/*px*/) !default;
+
+$font-family                    : unset !default;
+$font-weight                    : 500   !default;
+$lineheight                     : 1.2   !default;
+$color                          : unset !default;
+$margin-bottom                  : 0.75/*percent of heading's size*/ !default;
+
+
+
+$_cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $_cssvar: "--";
+} @else {
+    $_cssvar: "--#{$var-prefix}-";
+}
+@mixin css-vars {
+    #{$_cssvar}font-size-h6     : #{$font-size-h6};
+    #{$_cssvar}font-size-h5     : #{$font-size-h5};
+    #{$_cssvar}font-size-h4     : #{$font-size-h4};
+    #{$_cssvar}font-size-h3     : #{$font-size-h3};
+    #{$_cssvar}font-size-h2     : #{$font-size-h2};
+    #{$_cssvar}font-size-h1     : #{$font-size-h1};
+
+    #{$_cssvar}font-family      : #{$font-family};
+    #{$_cssvar}font-weight      : #{$font-weight};
+    #{$_cssvar}lineheight       : #{$lineheight};
+    #{$_cssvar}color            : #{$color};
+    #{$_cssvar}margin-bottom    : #{$margin-bottom};
+}
+@if ($var-root) {
+    #{$var-root} { @include css-vars; }
+}
+
+
+
+@for $n from 1 through 6 {
+    h#{$n}, .h#{$n} {
+        font-size: var(#{$_cssvar}font-size-h#{$n});
+    }
+}
+@mixin heading {
+    font-family     : var(#{$_cssvar}font-family);
+    font-weight     : var(#{$_cssvar}font-weight);
+    line-height     : var(#{$_cssvar}lineheight);
+    color           : var(#{$_cssvar}color); // currentColor
+    margin-bottom   : var(#{$_cssvar}margin-bottom);
+}
+h1, h2, h3, h4, h5, h6    .h1, .h2, .h3, .h4, .h5, .h6 { @include heading; }

@@ -1,0 +1,59 @@
+// Display typography
+// An oversize text
+
+
+
+@use "dependencies" as *;
+
+
+
+$var-root                       : ":root"   !default;
+$var-prefix                     : "display" !default;
+
+$font-size-d4                   : 3.5rem !default;
+$font-size-d3                   : 4.5rem !default;
+$font-size-d2                   : 5.5rem !default;
+$font-size-d1                   : 6rem !default;
+
+$font-family                    : unset !default;
+$font-weight                    : 300   !default;
+$lineheight                     : 1.2   !default;
+$color                          : unset !default;
+
+
+
+$_cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $_cssvar: "--";
+} @else {
+    $_cssvar: "--#{$var-prefix}-";
+}
+@mixin css-vars {
+    #{$_cssvar}font-size-d4     : #{$font-size-d4};
+    #{$_cssvar}font-size-d3     : #{$font-size-d3};
+    #{$_cssvar}font-size-d2     : #{$font-size-d2};
+    #{$_cssvar}font-size-d1     : #{$font-size-d1};
+
+    #{$_cssvar}font-family      : #{$font-family};
+    #{$_cssvar}font-weight      : #{$font-weight};
+    #{$_cssvar}lineheight       : #{$lineheight};
+    #{$_cssvar}color            : #{$color};
+}
+@if ($var-root) {
+    #{$var-root} { @include css-vars; }
+}
+
+
+
+@for $n from 1 through 4 {
+    .display-#{$n} {
+        font-size: var(#{$_cssvar}font-size-d#{$n});
+    }
+}
+@mixin display {
+    font-family     : var(#{$_cssvar}font-family);
+    font-weight     : var(#{$_cssvar}font-weight);
+    line-height     : var(#{$_cssvar}lineheight);
+    color           : var(#{$_cssvar}color); // currentColor
+}
+.display-1, .display-2, .display-3, .display-4 { @include display; }

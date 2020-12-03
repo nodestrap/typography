@@ -1,0 +1,50 @@
+// Secondary typography
+// A standout paragraph
+
+
+
+@use "dependencies" as *;
+
+
+
+$class                          : ".lead"       !default;
+$var-root                       : ":root"       !default;
+$var-prefix                     : "lead"        !default;
+
+$font-size                      : rems(/*1.25 rems*/ 20/*px*/) !default;
+$font-family                    : unset !default;
+$font-weight                    : 300   !default;
+$lineheight                     : 1.2   !default;
+$color                          : unset !default;
+
+
+
+$_cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $_cssvar: "--";
+} @else {
+    $_cssvar: "--#{$var-prefix}-";
+}
+@mixin css-vars {
+    #{$_cssvar}font-size        : #{$font-size};
+    #{$_cssvar}font-family      : #{$font-family};
+    #{$_cssvar}font-weight      : #{$font-weight};
+    #{$_cssvar}lineheight       : #{$lineheight};
+    #{$_cssvar}color            : #{$color};
+}
+@if ($var-root) {
+    #{$var-root} { @include css-vars; }
+}
+
+
+
+@mixin lead {
+    font-size       : var(#{$_cssvar}font-size);
+    font-family     : var(#{$_cssvar}font-family);
+    font-weight     : var(#{$_cssvar}font-weight);
+    line-height     : var(#{$_cssvar}lineheight);
+    color           : var(#{$_cssvar}color); // currentColor
+}
+@if ($class) {
+    #{$class} { @include lead; }
+}
