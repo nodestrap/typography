@@ -7,17 +7,16 @@
 
 
 
-$class                          : "kbd, .kbd"   !default;
-$var-root                       : ":root"       !default;
-$var-prefix                     : "kbd"         !default;
+$class                          : "p"       !default;
+$var-root                       : ":root"   !default;
+$var-prefix                     : "p"       !default;
 
 $font-size                      : unset !default;
-$font-family                    : var(--font-family-monospace) !default;
-$font-weight                    : 700 !default;
+$font-family                    : unset !default;
+$font-weight                    : unset !default;
 $lineheight                     : unset !default;
-$color                          : var(--white) !default;
-$background                     : var(--black-transp) !default;
-$padding                        : 0.2em !default;
+$color                          : unset !default;
+$margin-bottom                  : 1.00/*percent of paragraph's size*/ !default;
 
 
 
@@ -33,8 +32,7 @@ $_cssvar: "";
     #{$_cssvar}font-weight      : #{$font-weight};
     #{$_cssvar}lineheight       : #{$lineheight};
     #{$_cssvar}color            : #{$color};
-    #{$_cssvar}background       : #{$background};
-    #{$_cssvar}padding          : #{$padding};
+    #{$_cssvar}margin-bottom    : #{$margin-bottom};
 }
 @if ($var-root) {
     #{$var-root} { @include css-vars; }
@@ -42,15 +40,14 @@ $_cssvar: "";
 
 
 
-@mixin marking-kbd {
+@mixin paragraph {
     font-size       : var(#{$_cssvar}font-size);
     font-family     : var(#{$_cssvar}font-family);
     font-weight     : var(#{$_cssvar}font-weight);
     line-height     : var(#{$_cssvar}lineheight);
     color           : var(#{$_cssvar}color); // currentColor
-    background      : var(#{$_cssvar}background);
-    padding         : var(#{$_cssvar}padding);
+    margin-bottom   : calc(var(#{$_cssvar}margin-bottom) * var(#{$_cssvar}font-size));
 }
 @if ($class) {
-    #{$class} { @include marking-kbd; }
+    #{$class} { @include paragraph; }
 }

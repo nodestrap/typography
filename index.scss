@@ -1,6 +1,7 @@
 @forward "general"                          hide $class, $var-root, $var-prefix;
 @forward "secondary" as secondary-*         hide $class, $var-root, $var-prefix;
 @forward "heading" as heading-*             hide $class, $var-root, $var-prefix;
+@forward "paragraph" as paragraph-*         hide $class, $var-root, $var-prefix;
 @forward "display" as display-*             hide $class, $var-root, $var-prefix;
 @forward "lead" as lead-*                   hide $class, $var-root, $var-prefix;
 @forward "blockquote" as bquote-*           hide $class, $var-root, $var-prefix;

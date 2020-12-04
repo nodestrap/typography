@@ -12,7 +12,7 @@ $var-root                       : ":root"           !default;
 $var-prefix                     : "samp"            !default;
 
 $font-size                      : unset !default;
-$font-family                    : unset !default;
+$font-family                    : var(--font-family-monospace) !default;
 $font-weight                    : unset !default;
 $lineheight                     : unset !default;
 $color                          : unset !default;

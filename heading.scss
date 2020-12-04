@@ -54,6 +54,7 @@ $_cssvar: "";
 @for $n from 1 through 6 {
     h#{$n}, .h#{$n} {
         font-size: var(#{$_cssvar}font-size-h#{$n});
+        margin-bottom   : calc(var(#{$_cssvar}margin-bottom) * var(#{$_cssvar}font-size-h#{$n}));
     }
 }
 @mixin heading {
@@ -61,6 +62,5 @@ $_cssvar: "";
     font-weight     : var(#{$_cssvar}font-weight);
     line-height     : var(#{$_cssvar}lineheight);
     color           : var(#{$_cssvar}color); // currentColor
-    margin-bottom   : var(#{$_cssvar}margin-bottom);
 }
 h1, h2, h3, h4, h5, h6    .h1, .h2, .h3, .h4, .h5, .h6 { @include heading; }
