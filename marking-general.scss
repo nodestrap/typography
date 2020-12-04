@@ -1,0 +1,32 @@
+// General marking
+// A standard marking like bold, underline, italic.
+
+
+
+@use "dependencies" as *;
+
+
+
+@mixin marking-general {
+    del, s {
+        text-decoration: line-through;
+    }
+
+    ins, u {
+        text-decoration: underline;
+    }
+
+    small, .small {
+        font-size: 80%;
+        font-weight: 400;
+    }
+
+    strong, b {
+        font-weight: bolder;
+    }
+
+    em, i {
+        font-style: italic;
+    }
+}
+@include marking-general;

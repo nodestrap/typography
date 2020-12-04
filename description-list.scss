@@ -1,0 +1,72 @@
+// Secondary typography
+// A standout paragraph
+
+
+
+@use "dependencies" as *;
+
+
+
+$class                          : "dl"      !default;
+$var-root                       : ":root"   !default;
+$var-prefix                     : "dl"      !default;
+
+$term-font-size                 : unset !default;
+$term-font-family               : unset !default;
+$term-font-weight               : 700 !default;
+$term-lineheight                : unset !default;
+$term-color                     : unset !default;
+
+$desc-font-size                 : unset !default;
+$desc-font-family               : unset !default;
+$desc-font-weight               : unset !default;
+$desc-lineheight                : unset !default;
+$desc-color                     : unset !default;
+
+
+
+$_cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $_cssvar: "--";
+} @else {
+    $_cssvar: "--#{$var-prefix}-";
+}
+@mixin css-vars {
+    #{$_cssvar}term-font-size        : #{$term-font-size};
+    #{$_cssvar}term-font-family      : #{$term-font-family};
+    #{$_cssvar}term-font-weight      : #{$term-font-weight};
+    #{$_cssvar}term-lineheight       : #{$term-lineheight};
+    #{$_cssvar}term-color            : #{$term-color};
+
+    #{$_cssvar}desc-font-size        : #{$desc-font-size};
+    #{$_cssvar}desc-font-family      : #{$desc-font-family};
+    #{$_cssvar}desc-font-weight      : #{$desc-font-weight};
+    #{$_cssvar}desc-lineheight       : #{$desc-lineheight};
+    #{$_cssvar}desc-color            : #{$desc-color};
+}
+@if ($var-root) {
+    #{$var-root} { @include css-vars; }
+}
+
+
+
+@mixin description-list {
+    > dt {
+        font-size       : var(#{$_cssvar}term-font-size);
+        font-family     : var(#{$_cssvar}term-font-family);
+        font-weight     : var(#{$_cssvar}term-font-weight);
+        line-height     : var(#{$_cssvar}term-lineheight);
+        color           : var(#{$_cssvar}term-color); // currentColor
+    }
+
+    > dd {
+        font-size       : var(#{$_cssvar}desc-font-size);
+        font-family     : var(#{$_cssvar}desc-font-family);
+        font-weight     : var(#{$_cssvar}desc-font-weight);
+        line-height     : var(#{$_cssvar}desc-lineheight);
+        color           : var(#{$_cssvar}desc-color); // currentColor
+    }
+}
+@if ($class) {
+    #{$class} { @include description-list; }
+}

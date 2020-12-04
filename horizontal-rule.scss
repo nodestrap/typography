@@ -1,0 +1,45 @@
+// Secondary typography
+// A standout paragraph
+
+
+
+@use "dependencies" as *;
+
+
+
+$class                          : "hr"      !default;
+$var-root                       : ":root"   !default;
+$var-prefix                     : "hr"      !default;
+
+$opacity                        : 0.1 !default;
+$border                         : 1px solid var(--color) !default;
+$margin-y                       : var(--spacer, 1rem) !default;
+
+
+
+$_cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $_cssvar: "--";
+} @else {
+    $_cssvar: "--#{$var-prefix}-";
+}
+@mixin css-vars {
+    #{$_cssvar}opacity          : #{$opacity};
+    #{$_cssvar}border           : #{$border};
+    #{$_cssvar}margin-y         : #{$margin-y};
+}
+@if ($var-root) {
+    #{$var-root} { @include css-vars; }
+}
+
+
+
+@mixin horizontal-rule {
+    opacity         : var(#{$_cssvar}opacity);
+    border-top      : var(#{$_cssvar}border);
+    margin-top      : var(#{$_cssvar}margin-y);
+    margin-bottom   : var(#{$_cssvar}margin-y);
+}
+@if ($class) {
+    #{$class} { @include horizontal-rule; }
+}

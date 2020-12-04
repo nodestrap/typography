@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/heyymarco/typography#readme",
   "dependencies": {
-    "@heymarco/colors": "^1.0.2",
-    "@heymarco/scss-utils": "^1.0.2"
+    "@heymarco/colors": "^1.0.4",
+    "@heymarco/scss-utils": "^1.0.3"
   }
 }

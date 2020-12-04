@@ -1,0 +1,56 @@
+// Secondary typography
+// A standout paragraph
+
+
+
+@use "dependencies" as *;
+
+
+
+$class                          : "samp, .samp"     !default;
+$var-root                       : ":root"           !default;
+$var-prefix                     : "samp"            !default;
+
+$font-size                      : unset !default;
+$font-family                    : unset !default;
+$font-weight                    : unset !default;
+$lineheight                     : unset !default;
+$color                          : unset !default;
+$background                     : var(--info-transp) !default;
+$padding                        : 0.2em !default;
+
+
+
+$_cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $_cssvar: "--";
+} @else {
+    $_cssvar: "--#{$var-prefix}-";
+}
+@mixin css-vars {
+    #{$_cssvar}font-size        : #{$font-size};
+    #{$_cssvar}font-family      : #{$font-family};
+    #{$_cssvar}font-weight      : #{$font-weight};
+    #{$_cssvar}lineheight       : #{$lineheight};
+    #{$_cssvar}color            : #{$color};
+    #{$_cssvar}background       : #{$background};
+    #{$_cssvar}padding          : #{$padding};
+}
+@if ($var-root) {
+    #{$var-root} { @include css-vars; }
+}
+
+
+
+@mixin marking-samp {
+    font-size       : var(#{$_cssvar}font-size);
+    font-family     : var(#{$_cssvar}font-family);
+    font-weight     : var(#{$_cssvar}font-weight);
+    line-height     : var(#{$_cssvar}lineheight);
+    color           : var(#{$_cssvar}color); // currentColor
+    background      : var(#{$_cssvar}background);
+    padding         : var(#{$_cssvar}padding);
+}
+@if ($class) {
+    #{$class} { @include marking-samp; }
+}
