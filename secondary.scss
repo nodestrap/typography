@@ -10,21 +10,21 @@
 $class                          : ".secondary, small"   !default;
 $var-root                       : ":root"               !default;
 $var-prefix                     : "secondary"           !default;
+$cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $cssvar: "--";
+} @else {
+    $cssvar: "--#{$var-prefix}-";
+}
 
 $color                          : unset                 !default;
 $opacity                        : 0.5                   !default;
 
 
 
-$_cssvar: "";
-@if (($var-prefix == null) or ($var-prefix == "")) {
-    $_cssvar: "--";
-} @else {
-    $_cssvar: "--#{$var-prefix}-";
-}
 @mixin css-vars {
-    #{$_cssvar}color        : #{$color};
-    #{$_cssvar}opacity      : #{$opacity};
+    #{$cssvar}color        : #{$color};
+    #{$cssvar}opacity      : #{$opacity};
 }
 @if ($var-root) {
     #{$var-root} { @include css-vars; }
@@ -33,8 +33,8 @@ $_cssvar: "";
 
 
 @mixin secondary {
-    color   : var(#{$_cssvar}color); // currentColor
-    opacity : var(#{$_cssvar}opacity);
+    color   : var(#{$cssvar}color); // currentColor
+    opacity : var(#{$cssvar}opacity);
 }
 @if ($class) {
     #{$class} { @include secondary; }

@@ -10,6 +10,12 @@
 $class                          : ".lead"       !default;
 $var-root                       : ":root"       !default;
 $var-prefix                     : "lead"        !default;
+$cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $cssvar: "--";
+} @else {
+    $cssvar: "--#{$var-prefix}-";
+}
 
 $font-size                      : rems(/*1.25 rems*/ 20/*px*/) !default;
 $font-family                    : unset !default;
@@ -19,18 +25,12 @@ $color                          : unset !default;
 
 
 
-$_cssvar: "";
-@if (($var-prefix == null) or ($var-prefix == "")) {
-    $_cssvar: "--";
-} @else {
-    $_cssvar: "--#{$var-prefix}-";
-}
 @mixin css-vars {
-    #{$_cssvar}font-size        : #{$font-size};
-    #{$_cssvar}font-family      : #{$font-family};
-    #{$_cssvar}font-weight      : #{$font-weight};
-    #{$_cssvar}lineheight       : #{$lineheight};
-    #{$_cssvar}color            : #{$color};
+    #{$cssvar}font-size        : #{$font-size};
+    #{$cssvar}font-family      : #{$font-family};
+    #{$cssvar}font-weight      : #{$font-weight};
+    #{$cssvar}lineheight       : #{$lineheight};
+    #{$cssvar}color            : #{$color};
 }
 @if ($var-root) {
     #{$var-root} { @include css-vars; }
@@ -39,11 +39,11 @@ $_cssvar: "";
 
 
 @mixin lead {
-    font-size       : var(#{$_cssvar}font-size);
-    font-family     : var(#{$_cssvar}font-family);
-    font-weight     : var(#{$_cssvar}font-weight);
-    line-height     : var(#{$_cssvar}lineheight);
-    color           : var(#{$_cssvar}color); // currentColor
+    font-size       : var(#{$cssvar}font-size);
+    font-family     : var(#{$cssvar}font-family);
+    font-weight     : var(#{$cssvar}font-weight);
+    line-height     : var(#{$cssvar}lineheight);
+    color           : var(#{$cssvar}color); // currentColor
 }
 @if ($class) {
     #{$class} { @include lead; }

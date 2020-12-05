@@ -10,6 +10,12 @@
 $class                          : ":root"   !default;
 $var-root                       : ":root"   !default;
 $var-prefix                     : ""        !default;
+$cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $cssvar: "--";
+} @else {
+    $cssvar: "--#{$var-prefix}-";
+}
 
 $font-size                      : var(--font-size-normal)      !default;
 $font-size-small                : rems(/*0.75 rems*/ 12/*px*/) !default;
@@ -37,37 +43,32 @@ $color                          : var(--dark) !default; // font color, monochrom
 $background                     : var(--white) !default; // background color
 
 
-$_cssvar: "";
-@if (($var-prefix == null) or ($var-prefix == "")) {
-    $_cssvar: "--";
-} @else {
-    $_cssvar: "--#{$var-prefix}-";
-}
-@mixin css-vars {
-    #{$_cssvar}font-size                : #{$font-size};
-    #{$_cssvar}font-size-small          : #{$font-size-small};
-    #{$_cssvar}font-size-normal         : #{$font-size-normal};
-    #{$_cssvar}font-size-medium         : #{$font-size-medium};
-    #{$_cssvar}font-size-large          : #{$font-size-large};
-    #{$_cssvar}font-size-x-large        : #{$font-size-x-large};
-    #{$_cssvar}font-size-xx-large       : #{$font-size-xx-large};
-    #{$_cssvar}font-size-xxx-large      : #{$font-size-xxx-large};
-    
-    #{$_cssvar}font-family              : #{$font-family};
-    #{$_cssvar}font-family-sans-serif   : #{$font-family-sans-serif};
-    #{$_cssvar}font-family-monospace    : #{$font-family-monospace};
-    
-    #{$_cssvar}font-weight              : #{$font-weight};
-    #{$_cssvar}font-weight-lighter      : #{$font-weight-lighter};
-    #{$_cssvar}font-weight-light        : #{$font-weight-light};
-    #{$_cssvar}font-weight-normal       : #{$font-weight-normal};
-    #{$_cssvar}font-weight-bold         : #{$font-weight-bold};
-    #{$_cssvar}font-weight-bolder       : #{$font-weight-bolder};
-    
-    #{$_cssvar}lineheight               : #{$lineheight};
 
-    #{$_cssvar}color                    : #{$color};
-    #{$_cssvar}background               : #{$background};
+@mixin css-vars {
+    #{$cssvar}font-size                : #{$font-size};
+    #{$cssvar}font-size-small          : #{$font-size-small};
+    #{$cssvar}font-size-normal         : #{$font-size-normal};
+    #{$cssvar}font-size-medium         : #{$font-size-medium};
+    #{$cssvar}font-size-large          : #{$font-size-large};
+    #{$cssvar}font-size-x-large        : #{$font-size-x-large};
+    #{$cssvar}font-size-xx-large       : #{$font-size-xx-large};
+    #{$cssvar}font-size-xxx-large      : #{$font-size-xxx-large};
+    
+    #{$cssvar}font-family              : #{$font-family};
+    #{$cssvar}font-family-sans-serif   : #{$font-family-sans-serif};
+    #{$cssvar}font-family-monospace    : #{$font-family-monospace};
+    
+    #{$cssvar}font-weight              : #{$font-weight};
+    #{$cssvar}font-weight-lighter      : #{$font-weight-lighter};
+    #{$cssvar}font-weight-light        : #{$font-weight-light};
+    #{$cssvar}font-weight-normal       : #{$font-weight-normal};
+    #{$cssvar}font-weight-bold         : #{$font-weight-bold};
+    #{$cssvar}font-weight-bolder       : #{$font-weight-bolder};
+    
+    #{$cssvar}lineheight               : #{$lineheight};
+
+    #{$cssvar}color                    : #{$color};
+    #{$cssvar}background               : #{$background};
 }
 @if ($var-root) {
     #{$var-root} { @include css-vars; }
@@ -76,13 +77,13 @@ $_cssvar: "";
 
 
 @mixin general {
-    font-size   : var(#{$_cssvar}font-size);
-    font-family : var(#{$_cssvar}font-family);
-    font-weight : var(#{$_cssvar}font-weight);
-    line-height : var(#{$_cssvar}lineheight);
+    font-size   : var(#{$cssvar}font-size);
+    font-family : var(#{$cssvar}font-family);
+    font-weight : var(#{$cssvar}font-weight);
+    line-height : var(#{$cssvar}lineheight);
 
-    color       : var(#{$_cssvar}color); // currentColor
-    background  : var(#{$_cssvar}background); // backgroundColor
+    color       : var(#{$cssvar}color); // currentColor
+    background  : var(#{$cssvar}background); // backgroundColor
 }
 @if ($class) {
     #{$class} { @include general; }

@@ -10,6 +10,12 @@
 $class                          : "p"       !default;
 $var-root                       : ":root"   !default;
 $var-prefix                     : "p"       !default;
+$cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $cssvar: "--";
+} @else {
+    $cssvar: "--#{$var-prefix}-";
+}
 
 $font-size                      : unset !default;
 $font-family                    : unset !default;
@@ -20,19 +26,13 @@ $margin-bottom                  : 1.00/*percent of paragraph's size*/ !default;
 
 
 
-$_cssvar: "";
-@if (($var-prefix == null) or ($var-prefix == "")) {
-    $_cssvar: "--";
-} @else {
-    $_cssvar: "--#{$var-prefix}-";
-}
 @mixin css-vars {
-    #{$_cssvar}font-size        : #{$font-size};
-    #{$_cssvar}font-family      : #{$font-family};
-    #{$_cssvar}font-weight      : #{$font-weight};
-    #{$_cssvar}lineheight       : #{$lineheight};
-    #{$_cssvar}color            : #{$color};
-    #{$_cssvar}margin-bottom    : #{$margin-bottom};
+    #{$cssvar}font-size        : #{$font-size};
+    #{$cssvar}font-family      : #{$font-family};
+    #{$cssvar}font-weight      : #{$font-weight};
+    #{$cssvar}lineheight       : #{$lineheight};
+    #{$cssvar}color            : #{$color};
+    #{$cssvar}margin-bottom    : #{$margin-bottom};
 }
 @if ($var-root) {
     #{$var-root} { @include css-vars; }
@@ -41,12 +41,12 @@ $_cssvar: "";
 
 
 @mixin paragraph {
-    font-size       : var(#{$_cssvar}font-size);
-    font-family     : var(#{$_cssvar}font-family);
-    font-weight     : var(#{$_cssvar}font-weight);
-    line-height     : var(#{$_cssvar}lineheight);
-    color           : var(#{$_cssvar}color); // currentColor
-    margin-bottom   : calc(var(#{$_cssvar}margin-bottom) * var(#{$_cssvar}font-size));
+    font-size       : var(#{$cssvar}font-size);
+    font-family     : var(#{$cssvar}font-family);
+    font-weight     : var(#{$cssvar}font-weight);
+    line-height     : var(#{$cssvar}lineheight);
+    color           : var(#{$cssvar}color); // currentColor
+    margin-bottom   : calc(var(#{$cssvar}margin-bottom) * var(#{$cssvar}font-size));
 }
 @if ($class) {
     #{$class} { @include paragraph; }

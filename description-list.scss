@@ -10,6 +10,12 @@
 $class                          : "dl"      !default;
 $var-root                       : ":root"   !default;
 $var-prefix                     : "dl"      !default;
+$cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $cssvar: "--";
+} @else {
+    $cssvar: "--#{$var-prefix}-";
+}
 
 $term-font-size                 : unset !default;
 $term-font-family               : unset !default;
@@ -28,27 +34,21 @@ $margin-bottom                  : 1rem !default;
 
 
 
-$_cssvar: "";
-@if (($var-prefix == null) or ($var-prefix == "")) {
-    $_cssvar: "--";
-} @else {
-    $_cssvar: "--#{$var-prefix}-";
-}
 @mixin css-vars {
-    #{$_cssvar}term-font-size        : #{$term-font-size};
-    #{$_cssvar}term-font-family      : #{$term-font-family};
-    #{$_cssvar}term-font-weight      : #{$term-font-weight};
-    #{$_cssvar}term-lineheight       : #{$term-lineheight};
-    #{$_cssvar}term-color            : #{$term-color};
+    #{$cssvar}term-font-size        : #{$term-font-size};
+    #{$cssvar}term-font-family      : #{$term-font-family};
+    #{$cssvar}term-font-weight      : #{$term-font-weight};
+    #{$cssvar}term-lineheight       : #{$term-lineheight};
+    #{$cssvar}term-color            : #{$term-color};
 
-    #{$_cssvar}desc-font-size        : #{$desc-font-size};
-    #{$_cssvar}desc-font-family      : #{$desc-font-family};
-    #{$_cssvar}desc-font-weight      : #{$desc-font-weight};
-    #{$_cssvar}desc-lineheight       : #{$desc-lineheight};
-    #{$_cssvar}desc-color            : #{$desc-color};
-    #{$_cssvar}desc-margin-bottom    : #{$desc-margin-bottom};
+    #{$cssvar}desc-font-size        : #{$desc-font-size};
+    #{$cssvar}desc-font-family      : #{$desc-font-family};
+    #{$cssvar}desc-font-weight      : #{$desc-font-weight};
+    #{$cssvar}desc-lineheight       : #{$desc-lineheight};
+    #{$cssvar}desc-color            : #{$desc-color};
+    #{$cssvar}desc-margin-bottom    : #{$desc-margin-bottom};
 
-    #{$_cssvar}margin-bottom        : #{$margin-bottom};
+    #{$cssvar}margin-bottom        : #{$margin-bottom};
 }
 @if ($var-root) {
     #{$var-root} { @include css-vars; }
@@ -57,24 +57,24 @@ $_cssvar: "";
 
 
 @mixin description-list {
-    margin-bottom       : var(#{$_cssvar}margin-bottom);
+    margin-bottom       : var(#{$cssvar}margin-bottom);
 
 
     > dt {
-        font-size       : var(#{$_cssvar}term-font-size);
-        font-family     : var(#{$_cssvar}term-font-family);
-        font-weight     : var(#{$_cssvar}term-font-weight);
-        line-height     : var(#{$_cssvar}term-lineheight);
-        color           : var(#{$_cssvar}term-color); // currentColor
+        font-size       : var(#{$cssvar}term-font-size);
+        font-family     : var(#{$cssvar}term-font-family);
+        font-weight     : var(#{$cssvar}term-font-weight);
+        line-height     : var(#{$cssvar}term-lineheight);
+        color           : var(#{$cssvar}term-color); // currentColor
     }
 
     > dd {
-        font-size       : var(#{$_cssvar}desc-font-size);
-        font-family     : var(#{$_cssvar}desc-font-family);
-        font-weight     : var(#{$_cssvar}desc-font-weight);
-        line-height     : var(#{$_cssvar}desc-lineheight);
-        color           : var(#{$_cssvar}desc-color); // currentColor
-        margin-bottom   : var(#{$_cssvar}desc-margin-bottom);
+        font-size       : var(#{$cssvar}desc-font-size);
+        font-family     : var(#{$cssvar}desc-font-family);
+        font-weight     : var(#{$cssvar}desc-font-weight);
+        line-height     : var(#{$cssvar}desc-lineheight);
+        color           : var(#{$cssvar}desc-color); // currentColor
+        margin-bottom   : var(#{$cssvar}desc-margin-bottom);
     }
 }
 @if ($class) {
