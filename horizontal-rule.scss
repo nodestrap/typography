@@ -18,18 +18,18 @@ $cssvar: "";
 }
 
 $opacity                        : 0.1 !default;
-$border                         : 1px solid var(--color) !default;
-$margin-y                       : var(--spacer, 1rem) !default;
+$border                         : 1px solid var(#{$colorcssvar}color) !default;
+$margin-y                       : var(#{$spacercssvar}, 1rem) !default;
 
 
 
-@mixin css-vars {
+@mixin cssvar {
     #{$cssvar}opacity          : #{$opacity};
     #{$cssvar}border           : #{$border};
     #{$cssvar}margin-y         : #{$margin-y};
 }
 @if ($var-root) {
-    #{$var-root} { @include css-vars; }
+    #{$var-root} { @include cssvar; }
 }
 
 

@@ -25,7 +25,7 @@ $color                          : unset !default;
 
 
 
-@mixin css-vars {
+@mixin cssvar {
     #{$cssvar}font-size        : #{$font-size};
     #{$cssvar}font-family      : #{$font-family};
     #{$cssvar}font-weight      : #{$font-weight};
@@ -33,7 +33,7 @@ $color                          : unset !default;
     #{$cssvar}color            : #{$color};
 }
 @if ($var-root) {
-    #{$var-root} { @include css-vars; }
+    #{$var-root} { @include cssvar; }
 }
 
 

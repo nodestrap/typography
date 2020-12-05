@@ -34,7 +34,7 @@ $margin-bottom                  : 1rem !default;
 
 
 
-@mixin css-vars {
+@mixin cssvar {
     #{$cssvar}term-font-size        : #{$term-font-size};
     #{$cssvar}term-font-family      : #{$term-font-family};
     #{$cssvar}term-font-weight      : #{$term-font-weight};
@@ -51,7 +51,7 @@ $margin-bottom                  : 1rem !default;
     #{$cssvar}margin-bottom        : #{$margin-bottom};
 }
 @if ($var-root) {
-    #{$var-root} { @include css-vars; }
+    #{$var-root} { @include cssvar; }
 }
 
 

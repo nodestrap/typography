@@ -22,12 +22,12 @@ $opacity                        : 0.5                   !default;
 
 
 
-@mixin css-vars {
+@mixin cssvar {
     #{$cssvar}color        : #{$color};
     #{$cssvar}opacity      : #{$opacity};
 }
 @if ($var-root) {
-    #{$var-root} { @include css-vars; }
+    #{$var-root} { @include cssvar; }
 }
 
 

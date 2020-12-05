@@ -19,7 +19,7 @@ $cssvar: "";
 $font-size-d4                   : 3.5rem !default;
 $font-size-d3                   : 4.5rem !default;
 $font-size-d2                   : 5.5rem !default;
-$font-size-d1                   : 6rem !default;
+$font-size-d1                   : 6rem   !default;
 
 $font-family                    : unset !default;
 $font-weight                    : 300   !default;
@@ -28,7 +28,7 @@ $color                          : unset !default;
 
 
 
-@mixin css-vars {
+@mixin cssvar {
     #{$cssvar}font-size-d4     : #{$font-size-d4};
     #{$cssvar}font-size-d3     : #{$font-size-d3};
     #{$cssvar}font-size-d2     : #{$font-size-d2};
@@ -40,7 +40,7 @@ $color                          : unset !default;
     #{$cssvar}color            : #{$color};
 }
 @if ($var-root) {
-    #{$var-root} { @include css-vars; }
+    #{$var-root} { @include cssvar; }
 }
 
 

@@ -22,12 +22,12 @@ $font-family                    : unset !default;
 $font-weight                    : unset !default;
 $lineheight                     : unset !default;
 $color                          : unset !default;
-$background                     : var(--warning-transp) !default;
+$background                     : var(#{$colorcssvar}warning-transp) !default;
 $padding                        : 0.2em !default;
 
 
 
-@mixin css-vars {
+@mixin cssvar {
     #{$cssvar}font-size        : #{$font-size};
     #{$cssvar}font-family      : #{$font-family};
     #{$cssvar}font-weight      : #{$font-weight};
@@ -37,7 +37,7 @@ $padding                        : 0.2em !default;
     #{$cssvar}padding          : #{$padding};
 }
 @if ($var-root) {
-    #{$var-root} { @include css-vars; }
+    #{$var-root} { @include cssvar; }
 }
 
 

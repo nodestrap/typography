@@ -4,6 +4,7 @@
 
 
 @use "dependencies" as *;
+@use "general" as general;
 
 
 
@@ -18,16 +19,16 @@ $cssvar: "";
 }
 
 $font-size                      : unset !default;
-$font-family                    : var(--font-family-monospace) !default;
+$font-family                    : var(#{general.$cssvar}font-family-monospace) !default;
 $font-weight                    : unset !default;
 $lineheight                     : unset !default;
 $color                          : unset !default;
-$background                     : var(--info-transp) !default;
+$background                     : var(#{$colorcssvar}info-transp) !default;
 $padding                        : 0.2em !default;
 
 
 
-@mixin css-vars {
+@mixin cssvar {
     #{$cssvar}font-size        : #{$font-size};
     #{$cssvar}font-family      : #{$font-family};
     #{$cssvar}font-weight      : #{$font-weight};
@@ -37,7 +38,7 @@ $padding                        : 0.2em !default;
     #{$cssvar}padding          : #{$padding};
 }
 @if ($var-root) {
-    #{$var-root} { @include css-vars; }
+    #{$var-root} { @include cssvar; }
 }
 
 

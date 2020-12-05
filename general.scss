@@ -17,20 +17,20 @@ $cssvar: "";
     $cssvar: "--#{$var-prefix}-";
 }
 
-$font-size                      : var(--font-size-normal)      !default;
-$font-size-small                : rems(/*0.75 rems*/ 12/*px*/) !default;
-$font-size-normal               : rems(/*1.00 rems*/ 16/*px*/) !default;
-$font-size-medium               : rems(/*1.25 rems*/ 20/*px*/) !default;
-$font-size-large                : rems(/*1.50 rems*/ 24/*px*/) !default;
-$font-size-x-large              : rems(/*1.75 rems*/ 28/*px*/) !default;
-$font-size-xx-large             : rems(/*2.00 rems*/ 32/*px*/) !default;
-$font-size-xxx-large            : rems(/*2.25 rems*/ 36/*px*/) !default;
+$font-size                      : var(#{$cssvar}font-size-normal)   !default;
+$font-size-small                : rems(/*0.75 rems*/ 12/*px*/)      !default;
+$font-size-normal               : rems(/*1.00 rems*/ 16/*px*/)      !default;
+$font-size-medium               : rems(/*1.25 rems*/ 20/*px*/)      !default;
+$font-size-large                : rems(/*1.50 rems*/ 24/*px*/)      !default;
+$font-size-x-large              : rems(/*1.75 rems*/ 28/*px*/)      !default;
+$font-size-xx-large             : rems(/*2.00 rems*/ 32/*px*/)      !default;
+$font-size-xxx-large            : rems(/*2.25 rems*/ 36/*px*/)      !default;
 
-$font-family                    : var(--font-family-sans-serif) !default;
+$font-family                    : var(#{$cssvar}font-family-sans-serif) !default;
 $font-family-sans-serif         : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-monospace          : SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 
-$font-weight                    : var(--font-weight-normal) !default;
+$font-weight                    : var(#{$cssvar}font-weight-normal) !default;
 $font-weight-lighter            : lighter !default;
 $font-weight-light              : 300     !default;
 $font-weight-normal             : 400     !default;
@@ -39,12 +39,12 @@ $font-weight-bolder             : bolder  !default;
 
 $lineheight                     : 1.5 !default;
 
-$color                          : var(--dark) !default; // font color, monochrome icon color, currentColor
-$background                     : var(--white) !default; // background color
+$color                          : var(#{$colorcssvar}dark) !default; // font color, monochrome icon color, currentColor
+$background                     : var(#{$colorcssvar}white) !default; // background color
 
 
 
-@mixin css-vars {
+@mixin cssvar {
     #{$cssvar}font-size                : #{$font-size};
     #{$cssvar}font-size-small          : #{$font-size-small};
     #{$cssvar}font-size-normal         : #{$font-size-normal};
@@ -71,7 +71,7 @@ $background                     : var(--white) !default; // background color
     #{$cssvar}background               : #{$background};
 }
 @if ($var-root) {
-    #{$var-root} { @include css-vars; }
+    #{$var-root} { @include cssvar; }
 }
 
 
