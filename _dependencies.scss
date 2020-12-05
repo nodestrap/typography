@@ -16,3 +16,4 @@
 
 $colorcssvar: color.$cssvar;
 $spacercssvar: spacer.$cssvar;
+$spacercssvar-default: str-slice($spacercssvar, 1, -2);
