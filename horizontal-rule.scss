@@ -19,7 +19,7 @@ $cssvar: "";
 
 $opacity                        : 0.1 !default;
 $border                         : 1px solid var(#{$colorcssvar}color) !default;
-$margin-y                       : var(#{$spacercssvar}, 1rem) !default;
+$margin-y                       : var(#{$spacercssvar-default}, 1rem) !default;
 
 
 
