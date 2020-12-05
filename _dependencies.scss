@@ -1,7 +1,18 @@
 // development:
 // @forward "node_modules/@heymarco/scss-utils/index";
-// @forward "node_modules/@heymarco/colors/index" hide $class, $var-root, $var-prefix, $add-black, $transp-var;
+// @forward "node_modules/@heymarco/colors/index" hide $class, $var-root, $var-prefix, $cssvar, cssvar, $add-black, $transp-var;
+// @use "node_modules/@heymarco/colors/index" as color;
+// @forward "node_modules/@heymarco/spacer/index" hide $class, $var-root, $var-prefix, $cssvar, cssvar;
+// @use "node_modules/@heymarco/spacer/index" as spacer;
 
 // production:
 @forward "../../../node_modules/@heymarco/scss-utils/index";
-@forward "../../../node_modules/@heymarco/colors/index" hide $class, $var-root, $var-prefix, $add-black, $transp-var;
+@forward "../../../node_modules/@heymarco/colors/index" hide $class, $var-root, $var-prefix, $cssvar, $add-black, $transp-var;
+@use "../../../node_modules/@heymarco/colors/index" as color;
+@forward "../../../node_modules/@heymarco/spacer/index" hide $class, $var-root, $var-prefix, $cssvar;
+@use "../../../node_modules/@heymarco/spacer/index" as spacer;
+
+
+
+$colorcssvar: color.$cssvar;
+$spacercssvar: spacer.$cssvar;
