@@ -8,7 +8,7 @@
 
 
 $var-root                       : ":root"               !default;
-$var-prefix                     : "heading"             !default;
+$var-prefix                     : "h"                   !default;
 $cssvar: "";
 @if (($var-prefix == null) or ($var-prefix == "")) {
     $cssvar: "--";
