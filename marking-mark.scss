@@ -27,7 +27,7 @@ $padding                        : 0.2em !default;
 
 
 
-@mixin cssvar {
+@if ($var-root) { #{$var-root} {
     #{$cssvar}font-size        : #{$font-size};
     #{$cssvar}font-family      : #{$font-family};
     #{$cssvar}font-weight      : #{$font-weight};
@@ -35,14 +35,11 @@ $padding                        : 0.2em !default;
     #{$cssvar}color            : #{$color};
     #{$cssvar}background       : #{$background};
     #{$cssvar}padding          : #{$padding};
-}
-@if ($var-root) {
-    #{$var-root} { @include cssvar; }
-}
+}}
 
 
 
-@mixin marking-mark {
+@mixin style {
     font-size       : var(#{$cssvar}font-size);
     font-family     : var(#{$cssvar}font-family);
     font-weight     : var(#{$cssvar}font-weight);
@@ -52,5 +49,5 @@ $padding                        : 0.2em !default;
     padding         : var(#{$cssvar}padding);
 }
 @if ($class) {
-    #{$class} { @include marking-mark; }
+    #{$class} { @include style; }
 }

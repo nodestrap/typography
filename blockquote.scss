@@ -25,20 +25,17 @@ $color                          : unset !default;
 
 
 
-@mixin cssvar {
+@if ($var-root) { #{$var-root} {
     #{$cssvar}font-size        : #{$font-size};
     #{$cssvar}font-family      : #{$font-family};
     #{$cssvar}font-weight      : #{$font-weight};
     #{$cssvar}lineheight       : #{$lineheight};
     #{$cssvar}color            : #{$color};
-}
-@if ($var-root) {
-    #{$var-root} { @include cssvar; }
-}
+}}
 
 
 
-@mixin blockquote {
+@mixin style {
     font-size       : var(#{$cssvar}font-size);
     font-family     : var(#{$cssvar}font-family);
     font-weight     : var(#{$cssvar}font-weight);
@@ -46,5 +43,5 @@ $color                          : unset !default;
     color           : var(#{$cssvar}color); // currentColor
 }
 @if ($class) {
-    #{$class} { @include blockquote; }
+    #{$class} { @include style; }
 }

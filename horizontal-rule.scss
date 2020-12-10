@@ -23,23 +23,20 @@ $margin-y                       : var(#{$spacercssvar-default}, 1rem) !default;
 
 
 
-@mixin cssvar {
+@if ($var-root) { #{$var-root} {
     #{$cssvar}opacity          : #{$opacity};
     #{$cssvar}border           : #{$border};
     #{$cssvar}margin-y         : #{$margin-y};
-}
-@if ($var-root) {
-    #{$var-root} { @include cssvar; }
-}
+}}
 
 
 
-@mixin horizontal-rule {
+@mixin style {
     opacity         : var(#{$cssvar}opacity);
     border-top      : var(#{$cssvar}border);
     margin-top      : var(#{$cssvar}margin-y);
     margin-bottom   : var(#{$cssvar}margin-y);
 }
 @if ($class) {
-    #{$class} { @include horizontal-rule; }
+    #{$class} { @include style; }
 }

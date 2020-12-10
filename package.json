@@ -1,6 +1,6 @@
 {
   "name": "@heymarco/typography",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "provides basic texting  of headings, body text, lists, and more.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/heyymarco/typography#readme",
   "dependencies": {
-    "@heymarco/colors": "^1.0.7",
+    "@heymarco/colors": "^1.0.8",
     "@heymarco/scss-utils": "^1.0.3",
-    "@heymarco/spacer": "^1.0.1"
+    "@heymarco/spacer": "^1.0.2"
   }
 }

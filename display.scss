@@ -16,10 +16,10 @@ $cssvar: "";
     $cssvar: "--#{$var-prefix}-";
 }
 
-$font-size-d4                   : 3.5rem !default;
-$font-size-d3                   : 4.5rem !default;
-$font-size-d2                   : 5.5rem !default;
-$font-size-d1                   : 6rem   !default;
+$font-size-4                    : 3.5rem !default;
+$font-size-3                    : 4.5rem !default;
+$font-size-2                    : 5.5rem !default;
+$font-size-1                    : 6rem   !default;
 
 $font-family                    : unset !default;
 $font-weight                    : 300   !default;
@@ -28,32 +28,29 @@ $color                          : unset !default;
 
 
 
-@mixin cssvar {
-    #{$cssvar}font-size-d4     : #{$font-size-d4};
-    #{$cssvar}font-size-d3     : #{$font-size-d3};
-    #{$cssvar}font-size-d2     : #{$font-size-d2};
-    #{$cssvar}font-size-d1     : #{$font-size-d1};
+@if ($var-root) { #{$var-root} {
+    #{$cssvar}font-size-4       : #{$font-size-4};
+    #{$cssvar}font-size-3       : #{$font-size-3};
+    #{$cssvar}font-size-2       : #{$font-size-2};
+    #{$cssvar}font-size-1       : #{$font-size-1};
 
     #{$cssvar}font-family      : #{$font-family};
     #{$cssvar}font-weight      : #{$font-weight};
     #{$cssvar}lineheight       : #{$lineheight};
     #{$cssvar}color            : #{$color};
-}
-@if ($var-root) {
-    #{$var-root} { @include cssvar; }
-}
+}}
 
 
 
 @for $n from 1 through 4 {
     .display-#{$n} {
-        font-size: var(#{$cssvar}font-size-d#{$n});
+        font-size: var(#{$cssvar}font-size-#{$n});
     }
 }
-@mixin display {
+@mixin style {
     font-family     : var(#{$cssvar}font-family);
     font-weight     : var(#{$cssvar}font-weight);
     line-height     : var(#{$cssvar}lineheight);
     color           : var(#{$cssvar}color); // currentColor
 }
-.display-1, .display-2, .display-3, .display-4 { @include display; }
+.display-1, .display-2, .display-3, .display-4 { @include style; }

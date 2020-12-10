@@ -22,20 +22,17 @@ $opacity                        : 0.5                   !default;
 
 
 
-@mixin cssvar {
+@if ($var-root) { #{$var-root} {
     #{$cssvar}color        : #{$color};
     #{$cssvar}opacity      : #{$opacity};
-}
-@if ($var-root) {
-    #{$var-root} { @include cssvar; }
-}
+}}
 
 
 
-@mixin secondary {
+@mixin style {
     color   : var(#{$cssvar}color); // currentColor
     opacity : var(#{$cssvar}opacity);
 }
 @if ($class) {
-    #{$class} { @include secondary; }
+    #{$class} { @include style; }
 }

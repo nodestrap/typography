@@ -16,12 +16,12 @@ $cssvar: "";
     $cssvar: "--#{$var-prefix}-";
 }
 
-$font-size-h6                   : rems(/*1.00 rems*/ 16/*px*/) !default;
-$font-size-h5                   : rems(/*1.25 rems*/ 20/*px*/) !default;
-$font-size-h4                   : rems(/*1.50 rems*/ 24/*px*/) !default;
-$font-size-h3                   : rems(/*1.75 rems*/ 28/*px*/) !default;
-$font-size-h2                   : rems(/*2.00 rems*/ 32/*px*/) !default;
-$font-size-h1                   : rems(/*2.25 rems*/ 36/*px*/) !default;
+$font-size-6                    : rems(/*1.00 rems*/ 16/*px*/) !default;
+$font-size-5                    : rems(/*1.25 rems*/ 20/*px*/) !default;
+$font-size-4                    : rems(/*1.50 rems*/ 24/*px*/) !default;
+$font-size-3                    : rems(/*1.75 rems*/ 28/*px*/) !default;
+$font-size-2                    : rems(/*2.00 rems*/ 32/*px*/) !default;
+$font-size-1                    : rems(/*2.25 rems*/ 36/*px*/) !default;
 
 $font-family                    : unset !default;
 $font-weight                    : 500   !default;
@@ -31,36 +31,33 @@ $margin-bottom                  : 0.75/*percent of heading's size*/ !default;
 
 
 
-@mixin cssvar {
-    #{$cssvar}font-size-h6     : #{$font-size-h6};
-    #{$cssvar}font-size-h5     : #{$font-size-h5};
-    #{$cssvar}font-size-h4     : #{$font-size-h4};
-    #{$cssvar}font-size-h3     : #{$font-size-h3};
-    #{$cssvar}font-size-h2     : #{$font-size-h2};
-    #{$cssvar}font-size-h1     : #{$font-size-h1};
+@if ($var-root) { #{$var-root} {
+    #{$cssvar}font-size-6       : #{$font-size-6};
+    #{$cssvar}font-size-5       : #{$font-size-5};
+    #{$cssvar}font-size-4       : #{$font-size-4};
+    #{$cssvar}font-size-3       : #{$font-size-3};
+    #{$cssvar}font-size-2       : #{$font-size-2};
+    #{$cssvar}font-size-1       : #{$font-size-1};
 
     #{$cssvar}font-family      : #{$font-family};
     #{$cssvar}font-weight      : #{$font-weight};
     #{$cssvar}lineheight       : #{$lineheight};
     #{$cssvar}color            : #{$color};
     #{$cssvar}margin-bottom    : #{$margin-bottom};
-}
-@if ($var-root) {
-    #{$var-root} { @include cssvar; }
-}
+}}
 
 
 
 @for $n from 1 through 6 {
     h#{$n}, .h#{$n} {
-        font-size: var(#{$cssvar}font-size-h#{$n});
-        margin-bottom   : calc(var(#{$cssvar}margin-bottom) * var(#{$cssvar}font-size-h#{$n}));
+        font-size: var(#{$cssvar}font-size-#{$n});
+        margin-bottom   : calc(var(#{$cssvar}margin-bottom) * var(#{$cssvar}font-size-#{$n}));
     }
 }
-@mixin heading {
+@mixin style {
     font-family     : var(#{$cssvar}font-family);
     font-weight     : var(#{$cssvar}font-weight);
     line-height     : var(#{$cssvar}lineheight);
     color           : var(#{$cssvar}color); // currentColor
 }
-h1, h2, h3, h4, h5, h6    .h1, .h2, .h3, .h4, .h5, .h6 { @include heading; }
+h1, h2, h3, h4, h5, h6    .h1, .h2, .h3, .h4, .h5, .h6 { @include style; }

@@ -26,21 +26,18 @@ $margin-bottom                  : 1.00/*percent of paragraph's size*/ !default;
 
 
 
-@mixin cssvar {
+@if ($var-root) { #{$var-root} {
     #{$cssvar}font-size        : #{$font-size};
     #{$cssvar}font-family      : #{$font-family};
     #{$cssvar}font-weight      : #{$font-weight};
     #{$cssvar}lineheight       : #{$lineheight};
     #{$cssvar}color            : #{$color};
     #{$cssvar}margin-bottom    : #{$margin-bottom};
-}
-@if ($var-root) {
-    #{$var-root} { @include cssvar; }
-}
+}}
 
 
 
-@mixin paragraph {
+@mixin style {
     font-size       : var(#{$cssvar}font-size);
     font-family     : var(#{$cssvar}font-family);
     font-weight     : var(#{$cssvar}font-weight);
@@ -49,5 +46,5 @@ $margin-bottom                  : 1.00/*percent of paragraph's size*/ !default;
     margin-bottom   : calc(var(#{$cssvar}margin-bottom) * var(#{$cssvar}font-size));
 }
 @if ($class) {
-    #{$class} { @include paragraph; }
+    #{$class} { @include style; }
 }

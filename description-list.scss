@@ -34,7 +34,7 @@ $margin-bottom                  : 1rem !default;
 
 
 
-@mixin cssvar {
+@if ($var-root) { #{$var-root} {
     #{$cssvar}term-font-size        : #{$term-font-size};
     #{$cssvar}term-font-family      : #{$term-font-family};
     #{$cssvar}term-font-weight      : #{$term-font-weight};
@@ -49,14 +49,11 @@ $margin-bottom                  : 1rem !default;
     #{$cssvar}desc-margin-bottom    : #{$desc-margin-bottom};
 
     #{$cssvar}margin-bottom        : #{$margin-bottom};
-}
-@if ($var-root) {
-    #{$var-root} { @include cssvar; }
-}
+}}
 
 
 
-@mixin description-list {
+@mixin style {
     margin-bottom       : var(#{$cssvar}margin-bottom);
 
 
@@ -78,5 +75,5 @@ $margin-bottom                  : 1rem !default;
     }
 }
 @if ($class) {
-    #{$class} { @include description-list; }
+    #{$class} { @include style; }
 }

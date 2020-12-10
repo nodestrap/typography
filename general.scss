@@ -44,7 +44,7 @@ $background                     : var(#{$colorcssvar}white) !default; // backgro
 
 
 
-@mixin cssvar {
+@if ($var-root) { #{$var-root} {
     #{$cssvar}font-size                : #{$font-size};
     #{$cssvar}font-size-small          : #{$font-size-small};
     #{$cssvar}font-size-normal         : #{$font-size-normal};
@@ -69,14 +69,11 @@ $background                     : var(#{$colorcssvar}white) !default; // backgro
 
     #{$cssvar}color                    : #{$color};
     #{$cssvar}background               : #{$background};
-}
-@if ($var-root) {
-    #{$var-root} { @include cssvar; }
-}
+}}
 
 
 
-@mixin general {
+@mixin style {
     font-size   : var(#{$cssvar}font-size);
     font-family : var(#{$cssvar}font-family);
     font-weight : var(#{$cssvar}font-weight);
@@ -86,5 +83,5 @@ $background                     : var(#{$colorcssvar}white) !default; // backgro
     background  : var(#{$cssvar}background); // backgroundColor
 }
 @if ($class) {
-    #{$class} { @include general; }
+    #{$class} { @include style; }
 }
