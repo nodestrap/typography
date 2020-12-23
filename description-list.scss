@@ -26,6 +26,7 @@ $dt-font-size       : unset                                 !default;
 $dt-font-family     : unset                                 !default;
 $dt-font-weight     : var(#{gen.$cssvar}font-weight-bold)   !default;
 $dt-font-style      : unset                                 !default;
+$dt-text-decoration : unset                                 !default;
 $dt-lineheight      : unset                                 !default;
 
 $dt-color           : unset                                 !default;
@@ -40,6 +41,7 @@ $dd-font-size       : unset                                 !default;
 $dd-font-family     : unset                                 !default;
 $dd-font-weight     : unset                                 !default;
 $dd-font-style      : unset                                 !default;
+$dd-text-decoration : unset                                 !default;
 $dd-lineheight      : unset                                 !default;
 
 $dd-color           : unset                                 !default;
@@ -52,38 +54,40 @@ $dd-margin-right    : 0px                                   !default;
 
 
 @include declare-cssvar($var-root) {
-    #{$cssvar}margin-top        : #{$margin-top};
-    #{$cssvar}margin-bottom     : #{$margin-bottom};
-    #{$cssvar}margin-left       : #{$margin-left};
-    #{$cssvar}margin-right      : #{$margin-right};
+    #{$cssvar}margin-top            : #{$margin-top};
+    #{$cssvar}margin-bottom         : #{$margin-bottom};
+    #{$cssvar}margin-left           : #{$margin-left};
+    #{$cssvar}margin-right          : #{$margin-right};
 
 
-    #{$cssvar}dt-font-size      : #{$dt-font-size};
-    #{$cssvar}dt-font-family    : #{$dt-font-family};
-    #{$cssvar}dt-font-weight    : #{$dt-font-weight};
-    #{$cssvar}dt-font-style     : #{$dt-font-style};
-    #{$cssvar}dt-lineheight     : #{$dt-lineheight};
+    #{$cssvar}dt-font-size          : #{$dt-font-size};
+    #{$cssvar}dt-font-family        : #{$dt-font-family};
+    #{$cssvar}dt-font-weight        : #{$dt-font-weight};
+    #{$cssvar}dt-font-style         : #{$dt-font-style};
+    #{$cssvar}dt-text-decoration    : #{$dt-text-decoration};
+    #{$cssvar}dt-lineheight         : #{$dt-lineheight};
 
-    #{$cssvar}dt-color          : #{$dt-color};
+    #{$cssvar}dt-color              : #{$dt-color};
 
-    #{$cssvar}dt-margin-top     : #{$dt-margin-top};
-    #{$cssvar}dt-margin-bottom  : #{$dt-margin-bottom};
-    #{$cssvar}dt-margin-left    : #{$dt-margin-left};
-    #{$cssvar}dt-margin-right   : #{$dt-margin-right};
+    #{$cssvar}dt-margin-top         : #{$dt-margin-top};
+    #{$cssvar}dt-margin-bottom      : #{$dt-margin-bottom};
+    #{$cssvar}dt-margin-left        : #{$dt-margin-left};
+    #{$cssvar}dt-margin-right       : #{$dt-margin-right};
 
 
-    #{$cssvar}dd-font-size      : #{$dd-font-size};
-    #{$cssvar}dd-font-family    : #{$dd-font-family};
-    #{$cssvar}dd-font-weight    : #{$dd-font-weight};
-    #{$cssvar}dd-font-style     : #{$dd-font-style};
-    #{$cssvar}dd-lineheight     : #{$dd-lineheight};
+    #{$cssvar}dd-font-size          : #{$dd-font-size};
+    #{$cssvar}dd-font-family        : #{$dd-font-family};
+    #{$cssvar}dd-font-weight        : #{$dd-font-weight};
+    #{$cssvar}dd-font-style         : #{$dd-font-style};
+    #{$cssvar}dd-text-decoration    : #{$dd-text-decoration};
+    #{$cssvar}dd-lineheight         : #{$dd-lineheight};
 
-    #{$cssvar}dd-color          : #{$dd-color};
+    #{$cssvar}dd-color              : #{$dd-color};
 
-    #{$cssvar}dd-margin-top     : #{$dd-margin-top};
-    #{$cssvar}dd-margin-bottom  : #{$dd-margin-bottom};
-    #{$cssvar}dd-margin-left    : #{$dd-margin-left};
-    #{$cssvar}dd-margin-right   : #{$dd-margin-right};
+    #{$cssvar}dd-margin-top         : #{$dd-margin-top};
+    #{$cssvar}dd-margin-bottom      : #{$dd-margin-bottom};
+    #{$cssvar}dd-margin-left        : #{$dd-margin-left};
+    #{$cssvar}dd-margin-right       : #{$dd-margin-right};
 }
 
 
@@ -105,6 +109,7 @@ $dd-margin-right    : 0px                                   !default;
         font-family     : var(#{$cssvar}dt-font-family);
         font-weight     : var(#{$cssvar}dt-font-weight);
         font-style      : var(#{$cssvar}dt-font-style);
+        text-decoration : var(#{$cssvar}dt-text-decoration);
         line-height     : var(#{$cssvar}dt-lineheight);
     
         color           : var(#{$cssvar}dt-color);
@@ -121,6 +126,7 @@ $dd-margin-right    : 0px                                   !default;
         font-family     : var(#{$cssvar}dd-font-family);
         font-weight     : var(#{$cssvar}dd-font-weight);
         font-style      : var(#{$cssvar}dd-font-style);
+        text-decoration : var(#{$cssvar}dd-text-decoration);
         line-height     : var(#{$cssvar}dd-lineheight);
     
         color           : var(#{$cssvar}dd-color);

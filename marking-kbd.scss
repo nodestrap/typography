@@ -21,6 +21,7 @@ $font-size          : var(#{code.$cssvar}font-size)         !default;
 $font-family        : var(#{code.$cssvar}font-family)       !default;
 $font-weight        : var(#{code.$cssvar}font-weight)       !default;
 $font-style         : var(#{code.$cssvar}font-style)        !default;
+$text-decoration    : var(#{code.$cssvar}text-decoration)   !default;
 $lineheight         : var(#{code.$cssvar}lineheight)        !default;
 
 $color              : var(#{$color-cssvar}white)            !default;
@@ -34,19 +35,20 @@ $border-radius      : var(#{mark.$cssvar}border-radius)     !default;
 
 
 @include declare-cssvar($var-root) {
-    #{$cssvar}font-size     : #{$font-size};
-    #{$cssvar}font-family   : #{$font-family};
-    #{$cssvar}font-weight   : #{$font-weight};
-    #{$cssvar}font-style    : #{$font-style};
-    #{$cssvar}lineheight    : #{$lineheight};
+    #{$cssvar}font-size         : #{$font-size};
+    #{$cssvar}font-family       : #{$font-family};
+    #{$cssvar}font-weight       : #{$font-weight};
+    #{$cssvar}font-style        : #{$font-style};
+    #{$cssvar}text-decoration   : #{$text-decoration};
+    #{$cssvar}lineheight        : #{$lineheight};
 
-    #{$cssvar}color         : #{$color};
-    #{$cssvar}backg         : #{$backg};
+    #{$cssvar}color             : #{$color};
+    #{$cssvar}backg             : #{$backg};
 
-    #{$cssvar}padding-x     : #{$padding-x};
-    #{$cssvar}padding-y     : #{$padding-y};
-    #{$cssvar}border        : #{$border};
-    #{$cssvar}border-radius : #{$border-radius};
+    #{$cssvar}padding-x         : #{$padding-x};
+    #{$cssvar}padding-y         : #{$padding-y};
+    #{$cssvar}border            : #{$border};
+    #{$cssvar}border-radius     : #{$border-radius};
 }
 
 
@@ -67,6 +69,7 @@ $border-radius      : var(#{mark.$cssvar}border-radius)     !default;
     font-family     : var(#{$cssvar}font-family);
     font-weight     : var(#{$cssvar}font-weight);
     font-style      : var(#{$cssvar}font-style);
+    text-decoration : var(#{$cssvar}text-decoration);
     line-height     : var(#{$cssvar}lineheight);
 
     color           : var(#{$cssvar}color);

@@ -1,6 +1,6 @@
 {
   "name": "@heymarco/typography",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "provides basic texting  of headings, body text, lists, and more.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

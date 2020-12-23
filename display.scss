@@ -39,6 +39,7 @@ $font-sizes: map.merge((
 $font-family                    : var(#{head.$cssvar}font-family)       !default;
 $font-weight                    : 300                                   !default;
 $font-style                     : var(#{head.$cssvar}font-style)        !default;
+$text-decoration                : var(#{head.$cssvar}text-decoration)   !default;
 $lineheight                     : var(#{head.$cssvar}lineheight)        !default;
 
 $color                          : var(#{head.$cssvar}color)             !default;
@@ -55,17 +56,18 @@ $margin-right                   : var(#{head.$cssvar}margin-right)      !default
         #{$cssvar}font-size-#{$name}    : #{$value};
     }
 
-    #{$cssvar}font-family   : #{$font-family};
-    #{$cssvar}font-weight   : #{$font-weight};
-    #{$cssvar}font-style    : #{$font-style};
-    #{$cssvar}lineheight    : #{$lineheight};
+    #{$cssvar}font-family       : #{$font-family};
+    #{$cssvar}font-weight       : #{$font-weight};
+    #{$cssvar}font-style        : #{$font-style};
+    #{$cssvar}text-decoration   : #{$text-decoration};
+    #{$cssvar}lineheight        : #{$lineheight};
 
-    #{$cssvar}color         : #{$color};
+    #{$cssvar}color             : #{$color};
 
-    #{$cssvar}margin-top    : #{$margin-top};
-    #{$cssvar}margin-bottom : #{$margin-bottom};
-    #{$cssvar}margin-left   : #{$margin-left};
-    #{$cssvar}margin-right  : #{$margin-right};
+    #{$cssvar}margin-top        : #{$margin-top};
+    #{$cssvar}margin-bottom     : #{$margin-bottom};
+    #{$cssvar}margin-left       : #{$margin-left};
+    #{$cssvar}margin-right      : #{$margin-right};
 }
 
 
@@ -106,6 +108,7 @@ $margin-right                   : var(#{head.$cssvar}margin-right)      !default
     font-family     : var(#{$cssvar}font-family);
     font-weight     : var(#{$cssvar}font-weight);
     font-style      : var(#{$cssvar}font-style);
+    text-decoration : var(#{$cssvar}text-decoration);
     line-height     : var(#{$cssvar}lineheight);
 
     color           : var(#{$cssvar}color);

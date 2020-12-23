@@ -71,6 +71,7 @@ $font-weights: map.merge((
 ), $font-weights);
 
 $font-style                     : unset                                 !default;
+$text-decoration                : unset                                 !default;
 
 $lineheight                     : var(#{$cssvar}lineheight-default)     !default;
 $lineheight-default             : var(#{$cssvar}lineheight-nm)          !default;
@@ -115,7 +116,8 @@ $backg                          : var(#{$color-cssvar}white)            !default
     }
 
 
-    #{$cssvar}font-style: $font-style;
+    #{$cssvar}font-style        : $font-style;
+    #{$cssvar}text-decoration   : $text-decoration;
     
 
     @if (map.has-key($lineheights, default)) {
@@ -142,6 +144,7 @@ $backg                          : var(#{$color-cssvar}white)            !default
     font-family     : var(#{$cssvar}font-family-default);
     font-weight     : var(#{$cssvar}font-weight-default);
     font-style      : var(#{$cssvar}font-style);
+    text-decoration : var(#{$cssvar}text-decoration);
     line-height     : var(#{$cssvar}lineheight-default);
 
     color           : var(#{$cssvar}color);

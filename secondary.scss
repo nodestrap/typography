@@ -19,6 +19,7 @@ $font-size          : unset                                 !default;
 $font-family        : unset                                 !default;
 $font-weight        : unset                                 !default;
 $font-style         : unset                                 !default;
+$text-decoration    : unset                                 !default;
 $lineheight         : unset                                 !default;
 
 $color              : unset                                 !default;
@@ -27,14 +28,15 @@ $opacity            : 0.63                                  !default;
 
 
 @include declare-cssvar($var-root) {
-    #{$cssvar}font-size     : #{$font-size};
-    #{$cssvar}font-family   : #{$font-family};
-    #{$cssvar}font-weight   : #{$font-weight};
-    #{$cssvar}font-style    : #{$font-style};
-    #{$cssvar}lineheight    : #{$lineheight};
+    #{$cssvar}font-size         : #{$font-size};
+    #{$cssvar}font-family       : #{$font-family};
+    #{$cssvar}font-weight       : #{$font-weight};
+    #{$cssvar}font-style        : #{$font-style};
+    #{$cssvar}text-decoration   : #{$text-decoration};
+    #{$cssvar}lineheight        : #{$lineheight};
 
-    #{$cssvar}color         : #{$color};
-    #{$cssvar}opacity       : #{$opacity};
+    #{$cssvar}color             : #{$color};
+    #{$cssvar}opacity           : #{$opacity};
 }
 
 
@@ -49,6 +51,7 @@ $opacity            : 0.63                                  !default;
     font-family     : var(#{$cssvar}font-family);
     font-weight     : var(#{$cssvar}font-weight);
     font-style      : var(#{$cssvar}font-style);
+    text-decoration : var(#{$cssvar}text-decoration);
     line-height     : var(#{$cssvar}lineheight);
 
     color           : var(#{$cssvar}color);

@@ -20,6 +20,7 @@ $font-size          : var(#{gen.$cssvar}font-size-default)  !default;
 $font-family        : unset                                 !default;
 $font-weight        : unset                                 !default;
 $font-style         : unset                                 !default;
+$text-decoration    : unset                                 !default;
 $lineheight         : unset                                 !default;
 
 $color              : unset                                 !default;
@@ -32,18 +33,19 @@ $margin-right       : unset                                 !default;
 
 
 @include declare-cssvar($var-root) {
-    #{$cssvar}font-size     : #{$font-size};
-    #{$cssvar}font-family   : #{$font-family};
-    #{$cssvar}font-weight   : #{$font-weight};
-    #{$cssvar}font-style    : #{$font-style};
-    #{$cssvar}lineheight    : #{$lineheight};
+    #{$cssvar}font-size         : #{$font-size};
+    #{$cssvar}font-family       : #{$font-family};
+    #{$cssvar}font-weight       : #{$font-weight};
+    #{$cssvar}font-style        : #{$font-style};
+    #{$cssvar}text-decoration   : #{$text-decoration};
+    #{$cssvar}lineheight        : #{$lineheight};
 
-    #{$cssvar}color         : #{$color};
+    #{$cssvar}color             : #{$color};
     
-    #{$cssvar}margin-top    : #{$margin-top};
-    #{$cssvar}margin-bottom : #{$margin-bottom};
-    #{$cssvar}margin-left   : #{$margin-left};
-    #{$cssvar}margin-right  : #{$margin-right};
+    #{$cssvar}margin-top        : #{$margin-top};
+    #{$cssvar}margin-bottom     : #{$margin-bottom};
+    #{$cssvar}margin-left       : #{$margin-left};
+    #{$cssvar}margin-right      : #{$margin-right};
 }
 
 
@@ -58,6 +60,7 @@ $margin-right       : unset                                 !default;
     font-family     : var(#{$cssvar}font-family);
     font-weight     : var(#{$cssvar}font-weight);
     font-style      : var(#{$cssvar}font-style);
+    text-decoration : var(#{$cssvar}text-decoration);
     line-height     : var(#{$cssvar}lineheight);
 
     color           : var(#{$cssvar}color);
