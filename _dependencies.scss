@@ -1,19 +1,15 @@
 // development:
-// @forward "node_modules/@heymarco/scss-utils/index";
-// @forward "node_modules/@heymarco/colors/index" hide $class, $var-root, $var-prefix, $cssvar, $add-black, $transp-var;
-// @use "node_modules/@heymarco/colors/index" as color;
-// @forward "node_modules/@heymarco/spacer/index" hide $class, $var-root, $var-prefix, $cssvar;
-// @use "node_modules/@heymarco/spacer/index" as spacer;
+// @forward "node_modules/@heymarco/sass-class-template/index";
+// @forward "node_modules/@heymarco/sass-selector/index" as selector-*;
+// @forward "node_modules/@heymarco/colors/index" as color-*;
+// @forward "node_modules/@heymarco/border/index" as border-*;
+// @forward "node_modules/@heymarco/sass-string/index" as string-*;
+// @forward "node_modules/@heymarco/spacer/index" as spacer-*;
 
 // production:
-@forward "../../../node_modules/@heymarco/scss-utils/index";
-@forward "../../../node_modules/@heymarco/colors/index" hide $class, $var-root, $var-prefix, $cssvar, $add-black, $transp-var;
-@use "../../../node_modules/@heymarco/colors/index" as color;
-@forward "../../../node_modules/@heymarco/spacer/index" hide $class, $var-root, $var-prefix, $cssvar;
-@use "../../../node_modules/@heymarco/spacer/index" as spacer;
-
-
-
-$colorcssvar: color.$cssvar;
-$spacercssvar: spacer.$cssvar;
-$spacercssvar-default: str-slice($spacercssvar, 1, -2);
+@forward "../../../node_modules/@heymarco/sass-class-template/index";
+@forward "../../../node_modules/@heymarco/sass-selector/index" as selector-*;
+@forward "../../../node_modules/@heymarco/colors/index" as color-*;
+@forward "../../../node_modules/@heymarco/border/index" as border-*;
+@forward "../../../node_modules/@heymarco/sass-string/index" as string-*;
+@forward "../../../node_modules/@heymarco/spacer/index" as spacer-*;

@@ -1,15 +1,22 @@
 @forward "general";
-@forward "secondary"        as secondary-*;
+@forward "secondary"        as second-*;
+
 @forward "heading"          as h-*;
-@forward "paragraph"        as p-*;
 @forward "display"          as disp-*;
+
+@forward "paragraph"        as p-*;
 @forward "lead"             as lead-*;
+
 @forward "blockquote"       as bquote-*;
-@forward "horizontal-rule"  as hr-*;
-@forward "description-list" as dl-*;
-@forward "marking-general"  as marking-*;
+
 @forward "marking-mark"     as mark-*;
-@forward "marking-kbd"      as kbd-*;
 @forward "marking-code"     as code-*;
+@forward "marking-kbd"      as kbd-*;
 @forward "marking-var"      as var-*;
 @forward "marking-samp"     as samp-*;
+
+@forward "marking-general"  as marking-*;
+
+@forward "horizontal-rule"  as hr-*;
+
+@forward "description-list" as dl-*;

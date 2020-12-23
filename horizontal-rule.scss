@@ -1,42 +1,74 @@
-// Secondary typography
-// A standout paragraph
+// Horizontal Rule typography
+// Represents a thematic break between paragraph-level elements
 
 
 
 @use "dependencies" as *;
+@use "base"         as base;
+@use "general"      as gen;
 
 
 
-$class                          : "hr"      !default;
-$var-root                       : ":root"   !default;
-$var-prefix                     : "hr"      !default;
-$cssvar: "";
-@if (($var-prefix == null) or ($var-prefix == "")) {
-    $cssvar: "--";
-} @else {
-    $cssvar: "--#{$var-prefix}-";
+$alias              : "%typo-horz"                          !default;
+$class              : "hr"                                  !default;
+$var-root           : base.$var-root                        !default;
+$var-prefix         : "hr"                                  !default;
+$var-prefix-base    : base.$var-prefix                      !default;
+$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+
+$color              : currentColor                          !default;
+$opacity            : 0.25                                  !default;
+
+$height             : var(#{$border-cssvar}hair)            !default;
+
+$margin-top         : var(#{$spacer-cssvar}default)         !default;
+$margin-bottom      : var(#{$spacer-cssvar}default)         !default;
+$margin-left        : unset                                 !default;
+$margin-right       : unset                                 !default;
+
+
+
+@include declare-cssvar($var-root) {
+    #{$cssvar}color         : #{$color};
+    #{$cssvar}opacity       : #{$opacity};
+
+    #{$cssvar}height        : #{$height};
+
+    #{$cssvar}margin-top    : #{$margin-top};
+    #{$cssvar}margin-bottom : #{$margin-bottom};
+    #{$cssvar}margin-left   : #{$margin-left};
+    #{$cssvar}margin-right  : #{$margin-right};
 }
 
-$opacity                        : 0.1 !default;
-$border                         : 1px solid var(#{$colorcssvar}color) !default;
-$margin-y                       : var(#{$spacercssvar-default}, 1rem) !default;
 
 
-
-@if ($var-root) { #{$var-root} {
-    #{$cssvar}opacity          : #{$opacity};
-    #{$cssvar}border           : #{$border};
-    #{$cssvar}margin-y         : #{$margin-y};
-}}
+/* begin: general style */
+@mixin _style($include) {
+    @if ($include) { @include  base.style; }
+    @else          { @extend #{base.$alias} !optional; }
 
 
+    color               : inherit; // Reset Firefox's gray color
+    background-color    : var(#{$cssvar}color);
+    opacity             : var(#{$cssvar}opacity);
 
+    height              : var(#{$cssvar}height);
+
+    margin-top          : var(#{$cssvar}margin-top);
+    margin-bottom       : var(#{$cssvar}margin-bottom);
+    margin-left         : var(#{$cssvar}margin-left);
+    margin-right        : var(#{$cssvar}margin-right);
+
+    border              : 0px;
+}
 @mixin style {
-    opacity         : var(#{$cssvar}opacity);
-    border-top      : var(#{$cssvar}border);
-    margin-top      : var(#{$cssvar}margin-y);
-    margin-bottom   : var(#{$cssvar}margin-y);
+    @include _style(true);
 }
-@if ($class) {
-    #{$class} { @include style; }
+@include alias($alias) {
+    @include _style(false);
 }
+/* end: general style */
+
+
+
+@include class($alias, $class, "");

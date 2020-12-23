@@ -1,13 +1,30 @@
-// General marking
-// A standard marking like bold, underline, italic.
+// General marking typography
+// bold, underline, strike-through, italic, etc.
 
 
 
 @use "dependencies" as *;
+@use "base"         as base;
+@use "general"      as gen;
 
 
 
-@mixin marking-general {
+$alias              : "%typo-marking-general"               !default;
+$class              : ""                                    !default;
+$var-root           : base.$var-root                        !default;
+$var-prefix         : "gen"                                 !default;
+$var-prefix-base    : base.$var-prefix                      !default;
+$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+
+
+
+@include declare-cssvar($var-root) {
+}
+
+
+
+/* begin: general style */
+@mixin _style($include) {
     del, s {
         text-decoration: line-through;
     }
@@ -17,16 +34,26 @@
     }
 
     small, .small {
-        font-size: 80%;
-        font-weight: 400;
+        font-size: var(#{gen.$cssvar}font-size-sm);
     }
 
     strong, b {
-        font-weight: bolder;
+        font-weight: var(#{gen.$cssvar}font-weight-bolder);
     }
 
     em, i {
         font-style: italic;
     }
 }
-@include marking-general;
+@mixin style {
+    @include _style(true);
+}
+@include alias($alias) {
+    @include _style(false);
+}
+/* end: general style */
+
+
+
+// @include class($alias, $class, "");
+@include style;

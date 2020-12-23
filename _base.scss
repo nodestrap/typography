@@ -1,0 +1,39 @@
+// A base class of typography.
+
+
+
+@use "dependencies" as *;
+
+
+
+$alias              : "%typo-base"                          !default;
+$class              : ":root"                               !default;
+$var-root           : ":root"                               !default;
+$var-prefix         : ""                                    !default;
+$var-prefix-base    : ""                                    !default;
+$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+
+/* define variables here */
+
+
+
+@include declare-cssvar($var-root) {
+}
+
+
+
+/* begin: general style */
+@mixin _style($include) {
+}
+@mixin style {
+    @include _style(true);
+}
+@include alias($alias) {
+    @include _style(false);
+}
+/* end: general style */
+
+
+
+// abstract class => no emit class
+// @include class($alias, $class, base.$class);

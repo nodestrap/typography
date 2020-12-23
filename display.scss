@@ -1,56 +1,129 @@
 // Display typography
-// An oversize text
+// An oversized heading
 
 
 
 @use "dependencies" as *;
+@use "base"         as base;
+@use "general"      as gen;
+@use "heading"      as head;
+
+
+@use "sass:map"     as map;
 
 
 
-$var-root                       : ":root"   !default;
-$var-prefix                     : "disp"    !default;
-$cssvar: "";
-@if (($var-prefix == null) or ($var-prefix == "")) {
-    $cssvar: "--";
-} @else {
-    $cssvar: "--#{$var-prefix}-";
-}
+$alias              : "%typo-display"                       !default;
+$class              : ".display-"                           !default;
+$var-root           : base.$var-root                        !default;
+$var-prefix         : "disp"                                !default;
+$var-prefix-base    : base.$var-prefix                      !default;
+$cssvar: make-cssvar($var-prefix, $var-prefix-base);
 
-$font-size-4                    : 3.5rem !default;
-$font-size-3                    : 4.5rem !default;
-$font-size-2                    : 5.5rem !default;
-$font-size-1                    : 6rem   !default;
+$font-size-6        : calc(2.50 * var(#{gen.$cssvar}font-size-default)) !default;
+$font-size-5        : calc(3.00 * var(#{gen.$cssvar}font-size-default)) !default;
+$font-size-4        : calc(3.50 * var(#{gen.$cssvar}font-size-default)) !default;
+$font-size-3        : calc(4.00 * var(#{gen.$cssvar}font-size-default)) !default;
+$font-size-2        : calc(4.50 * var(#{gen.$cssvar}font-size-default)) !default;
+$font-size-1        : calc(5.00 * var(#{gen.$cssvar}font-size-default)) !default;
+$font-sizes         : ()                                                !default;
+$font-sizes: map.merge((
+    6      : $font-size-6,
+    5      : $font-size-5,
+    4      : $font-size-4,
+    3      : $font-size-3,
+    2      : $font-size-2,
+    1      : $font-size-1,
+), $font-sizes);
 
-$font-family                    : unset !default;
-$font-weight                    : 300   !default;
-$lineheight                     : 1.2   !default;
-$color                          : unset !default;
+$font-family                    : var(#{head.$cssvar}font-family)       !default;
+$font-weight                    : 300                                   !default;
+$font-style                     : var(#{head.$cssvar}font-style)        !default;
+$lineheight                     : var(#{head.$cssvar}lineheight)        !default;
+
+$color                          : var(#{head.$cssvar}color)             !default;
+
+$margin-top                     : var(#{head.$cssvar}margin-top)        !default;
+$margin-bottom                  : calc(var(#{$cssvar}font-size) * 0.75) !default;
+$margin-left                    : var(#{head.$cssvar}margin-left)       !default;
+$margin-right                   : var(#{head.$cssvar}margin-right)      !default;
 
 
 
-@if ($var-root) { #{$var-root} {
-    #{$cssvar}font-size-4       : #{$font-size-4};
-    #{$cssvar}font-size-3       : #{$font-size-3};
-    #{$cssvar}font-size-2       : #{$font-size-2};
-    #{$cssvar}font-size-1       : #{$font-size-1};
-
-    #{$cssvar}font-family      : #{$font-family};
-    #{$cssvar}font-weight      : #{$font-weight};
-    #{$cssvar}lineheight       : #{$lineheight};
-    #{$cssvar}color            : #{$color};
-}}
-
-
-
-@for $n from 1 through 4 {
-    .display-#{$n} {
-        font-size: var(#{$cssvar}font-size-#{$n});
+@include declare-cssvar($var-root) {
+    @each $name, $value in $font-sizes {
+        #{$cssvar}font-size-#{$name}    : #{$value};
     }
+
+    #{$cssvar}font-family   : #{$font-family};
+    #{$cssvar}font-weight   : #{$font-weight};
+    #{$cssvar}font-style    : #{$font-style};
+    #{$cssvar}lineheight    : #{$lineheight};
+
+    #{$cssvar}color         : #{$color};
+
+    #{$cssvar}margin-top    : #{$margin-top};
+    #{$cssvar}margin-bottom : #{$margin-bottom};
+    #{$cssvar}margin-left   : #{$margin-left};
+    #{$cssvar}margin-right  : #{$margin-right};
 }
-@mixin style {
+
+
+
+/* begin: division class */
+@mixin _style-of($level, $include) {
+    // explicitly includes from abstract parent class
+    @if ($include) { @include style; }
+    @else          { @extend #{$alias} !optional; }
+
+
+    @if (not map.has-key($font-sizes, $level)) { @error "#{$level} is not found."; }
+
+    #{$cssvar}font-size : var(#{$cssvar}font-size-#{$level});
+}
+@mixin style-of($level) {
+    @include _style-of($level, true);
+}
+@each $level, $value in $font-sizes {
+    @include alias-of($alias, $level) {
+        @include _style-of($level, false);
+    }
+
+
+    @include class(part-combine($alias, #{$level}), #{$level}, $class);
+}
+/* end: division class */
+
+
+
+/* begin: general style */
+@mixin _style($include) {
+    @if ($include) { @include  base.style; }
+    @else          { @extend #{base.$alias} !optional; }
+
+
+    font-size       : var(#{$cssvar}font-size);
     font-family     : var(#{$cssvar}font-family);
     font-weight     : var(#{$cssvar}font-weight);
+    font-style      : var(#{$cssvar}font-style);
     line-height     : var(#{$cssvar}lineheight);
-    color           : var(#{$cssvar}color); // currentColor
+
+    color           : var(#{$cssvar}color);
+
+    &:not(:first-child) { margin-top    : var(#{$cssvar}margin-top); }
+    &:not(:last-child)  { margin-bottom : var(#{$cssvar}margin-bottom); }
+    margin-left     : var(#{$cssvar}margin-left);
+    margin-right    : var(#{$cssvar}margin-right);
 }
-.display-1, .display-2, .display-3, .display-4 { @include style; }
+@mixin style {
+    @include _style(true);
+}
+@include alias($alias) {
+    @include _style(false);
+}
+/* end: general style */
+
+
+
+// abstract class => no emit class
+// @include class($alias, $class, "");

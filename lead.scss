@@ -1,47 +1,81 @@
-// Secondary typography
-// A standout paragraph
+// Emphasized paragraph typography
+// Make a paragraph stand out
 
 
 
 @use "dependencies" as *;
+@use "base"         as base;
+@use "general"      as gen;
+@use "paragraph"    as para;
 
 
 
-$class                          : ".lead"       !default;
-$var-root                       : ":root"       !default;
-$var-prefix                     : "lead"        !default;
-$cssvar: "";
-@if (($var-prefix == null) or ($var-prefix == "")) {
-    $cssvar: "--";
-} @else {
-    $cssvar: "--#{$var-prefix}-";
+$alias              : "%typo-lead"                          !default;
+$class              : ".lead"                               !default;
+$var-root           : base.$var-root                        !default;
+$var-prefix         : "lead"                                !default;
+$var-prefix-base    : base.$var-prefix                      !default;
+$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+
+$font-size          : var(#{gen.$cssvar}font-size-md)       !default;
+$font-family        : var(#{para.$cssvar}font-family)       !default;
+$font-weight        : var(#{gen.$cssvar}font-weight-light)  !default;
+$font-style         : var(#{para.$cssvar}font-style)        !default;
+$lineheight         : var(#{para.$cssvar}lineheight)        !default;
+
+$color              : var(#{para.$cssvar}color)             !default;
+
+$margin-top         : var(#{para.$cssvar}margin-top)        !default;
+$margin-bottom      : calc(var(#{$cssvar}font-size) * 1.00) !default;
+$margin-left        : var(#{para.$cssvar}margin-left)       !default;
+$margin-right       : var(#{para.$cssvar}margin-right)      !default;
+
+
+
+@include declare-cssvar($var-root) {
+    #{$cssvar}font-size     : #{$font-size};
+    #{$cssvar}font-family   : #{$font-family};
+    #{$cssvar}font-weight   : #{$font-weight};
+    #{$cssvar}font-style    : #{$font-style};
+    #{$cssvar}lineheight    : #{$lineheight};
+
+    #{$cssvar}color         : #{$color};
+    
+    #{$cssvar}margin-top    : #{$margin-top};
+    #{$cssvar}margin-bottom : #{$margin-bottom};
+    #{$cssvar}margin-left   : #{$margin-left};
+    #{$cssvar}margin-right  : #{$margin-right};
 }
 
-$font-size                      : rems(/*1.25 rems*/ 20/*px*/) !default;
-$font-family                    : unset !default;
-$font-weight                    : 300   !default;
-$lineheight                     : 1.2   !default;
-$color                          : unset !default;
 
 
-
-@if ($var-root) { #{$var-root} {
-    #{$cssvar}font-size        : #{$font-size};
-    #{$cssvar}font-family      : #{$font-family};
-    #{$cssvar}font-weight      : #{$font-weight};
-    #{$cssvar}lineheight       : #{$lineheight};
-    #{$cssvar}color            : #{$color};
-}}
+/* begin: general style */
+@mixin _style($include) {
+    @if ($include) { @include  base.style; }
+    @else          { @extend #{base.$alias} !optional; }
 
 
-
-@mixin style {
     font-size       : var(#{$cssvar}font-size);
     font-family     : var(#{$cssvar}font-family);
     font-weight     : var(#{$cssvar}font-weight);
+    font-style      : var(#{$cssvar}font-style);
     line-height     : var(#{$cssvar}lineheight);
-    color           : var(#{$cssvar}color); // currentColor
+
+    color           : var(#{$cssvar}color);
+    
+    &:not(:first-child) { margin-top    : var(#{$cssvar}margin-top); }
+    &:not(:last-child)  { margin-bottom : var(#{$cssvar}margin-bottom); }
+    margin-left     : var(#{$cssvar}margin-left);
+    margin-right    : var(#{$cssvar}margin-right);
 }
-@if ($class) {
-    #{$class} { @include style; }
+@mixin style {
+    @include _style(true);
 }
+@include alias($alias) {
+    @include _style(false);
+}
+/* end: general style */
+
+
+
+@include class($alias, $class, "");

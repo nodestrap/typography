@@ -4,84 +4,157 @@
 
 
 @use "dependencies" as *;
+@use "base"         as base;
 
 
 
-$class                          : ":root"   !default;
-$var-root                       : ":root"   !default;
-$var-prefix                     : ""        !default;
-$cssvar: "";
-@if (($var-prefix == null) or ($var-prefix == "")) {
-    $cssvar: "--";
-} @else {
-    $cssvar: "--#{$var-prefix}-";
-}
+@use    "sass:map"     as map;
 
-$font-size                      : var(#{$cssvar}font-size-normal)   !default;
-$font-size-small                : rems(/*0.75 rems*/ 12/*px*/)      !default;
-$font-size-normal               : rems(/*1.00 rems*/ 16/*px*/)      !default;
-$font-size-medium               : rems(/*1.25 rems*/ 20/*px*/)      !default;
-$font-size-large                : rems(/*1.50 rems*/ 24/*px*/)      !default;
-$font-size-x-large              : rems(/*1.75 rems*/ 28/*px*/)      !default;
-$font-size-xx-large             : rems(/*2.00 rems*/ 32/*px*/)      !default;
-$font-size-xxx-large            : rems(/*2.25 rems*/ 36/*px*/)      !default;
 
-$font-family                    : var(#{$cssvar}font-family-sans-serif) !default;
-$font-family-sans-serif         : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+$alias              : "%typo-general"                       !default;
+$class              : base.$class                           !default;
+$var-root           : base.$var-root                        !default;
+$var-prefix         : ""                                    !default;
+$var-prefix-base    : base.$var-prefix                      !default;
+$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+
+$font-size                      :      var(#{$cssvar}font-size-default)     !default;
+$font-size-default              :      var(#{$cssvar}font-size-nm)          !default;
+$font-size-xs                   : calc(var(#{$cssvar}font-size-nm) * 0.50)  !default;
+$font-size-sm                   : calc(var(#{$cssvar}font-size-nm) * 0.75)  !default;
+$font-size-nm                   : 1.00rem                                   !default;
+$font-size-md                   : calc(var(#{$cssvar}font-size-nm) * 1.25)  !default;
+$font-size-lg                   : calc(var(#{$cssvar}font-size-nm) * 1.50)  !default;
+$font-size-xl                   : calc(var(#{$cssvar}font-size-nm) * 1.75)  !default;
+$font-size-xxl                  : calc(var(#{$cssvar}font-size-nm) * 2.00)  !default;
+$font-size-xxxl                 : calc(var(#{$cssvar}font-size-nm) * 2.25)  !default;
+$font-sizes                     : ()                                        !default;
+$font-sizes: map.merge((
+    default : $font-size-default,
+    xs      : $font-size-xs,
+    sm      : $font-size-sm,
+    nm      : $font-size-nm,
+    md      : $font-size-md,
+    lg      : $font-size-lg,
+    xl      : $font-size-xl,
+    xxl     : $font-size-xxl,
+    xxxl    : $font-size-xxxl,
+), $font-sizes);
+
+$font-family                    : var(#{$cssvar}font-family-default)    !default;
+$font-family-default            : var(#{$cssvar}font-family-sans-serif) !default;
+$font-family-sans-serif         : system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-monospace          : SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-families                  : ()                                    !default;
+$font-families: map.merge((
+    default     : $font-family-default,
+    sans-serif  : $font-family-sans-serif,
+    monospace   : $font-family-monospace,
+), $font-families);
 
-$font-weight                    : var(#{$cssvar}font-weight-normal) !default;
-$font-weight-lighter            : lighter !default;
-$font-weight-light              : 300     !default;
-$font-weight-normal             : 400     !default;
-$font-weight-bold               : 700     !default;
-$font-weight-bolder             : bolder  !default;
+$font-weight                    : var(#{$cssvar}font-weight-default)    !default;
+$font-weight-default            : var(#{$cssvar}font-weight-normal)     !default;
+$font-weight-lighter            : lighter                               !default;
+$font-weight-light              : 300                                   !default;
+$font-weight-normal             : 400                                   !default;
+$font-weight-bold               : 700                                   !default;
+$font-weight-bolder             : bolder                                !default;
+$font-weights                   : ()                                    !default;
+$font-weights: map.merge((
+    default : $font-weight-default,
+    lighter : $font-weight-lighter,
+    light   : $font-weight-light,
+    normal  : $font-weight-normal,
+    bold    : $font-weight-bold,
+    bolder  : $font-weight-bolder,
+), $font-weights);
 
-$lineheight                     : 1.5 !default;
+$font-style                     : unset                                 !default;
 
-$color                          : var(#{$colorcssvar}dark) !default; // font color, monochrome icon color, currentColor
-$background                     : var(#{$colorcssvar}white) !default; // background color
+$lineheight                     : var(#{$cssvar}lineheight-default)     !default;
+$lineheight-default             : var(#{$cssvar}lineheight-nm)          !default;
+$lineheight-sm                  : 1.25                                  !default;
+$lineheight-nm                  : 1.50                                  !default;
+$lineheight-lg                  : 2.00                                  !default;
+$lineheights                    : ()                                    !default;
+$lineheights: map.merge((
+    default : $lineheight-default,
+    sm      : $lineheight-sm,
+    nm      : $lineheight-nm,
+    lg      : $lineheight-lg,
+), $lineheights);
+
+$color                          : var(#{$color-cssvar}dark)             !default;
+$backg                          : var(#{$color-cssvar}white)            !default;
 
 
 
-@if ($var-root) { #{$var-root} {
-    #{$cssvar}font-size                : #{$font-size};
-    #{$cssvar}font-size-small          : #{$font-size-small};
-    #{$cssvar}font-size-normal         : #{$font-size-normal};
-    #{$cssvar}font-size-medium         : #{$font-size-medium};
-    #{$cssvar}font-size-large          : #{$font-size-large};
-    #{$cssvar}font-size-x-large        : #{$font-size-x-large};
-    #{$cssvar}font-size-xx-large       : #{$font-size-xx-large};
-    #{$cssvar}font-size-xxx-large      : #{$font-size-xxx-large};
+@include declare-cssvar($var-root) {
+    @if (map.has-key($font-sizes, default)) {
+        #{$cssvar}font-size             : var(#{$cssvar}font-size-default);
+    }
+    @each $name, $value in $font-sizes {
+        #{$cssvar}font-size-#{$name}    : #{$value};
+    }
+
     
-    #{$cssvar}font-family              : #{$font-family};
-    #{$cssvar}font-family-sans-serif   : #{$font-family-sans-serif};
-    #{$cssvar}font-family-monospace    : #{$font-family-monospace};
+    @if (map.has-key($font-families, default)) {
+        #{$cssvar}font-family           : var(#{$cssvar}font-family-default);
+    }
+    @each $name, $value in $font-families {
+        #{$cssvar}font-family-#{$name}  : #{$value};
+    }
     
-    #{$cssvar}font-weight              : #{$font-weight};
-    #{$cssvar}font-weight-lighter      : #{$font-weight-lighter};
-    #{$cssvar}font-weight-light        : #{$font-weight-light};
-    #{$cssvar}font-weight-normal       : #{$font-weight-normal};
-    #{$cssvar}font-weight-bold         : #{$font-weight-bold};
-    #{$cssvar}font-weight-bolder       : #{$font-weight-bolder};
     
-    #{$cssvar}lineheight               : #{$lineheight};
+    @if (map.has-key($font-weights, default)) {
+        #{$cssvar}font-weight           : var(#{$cssvar}font-weight-default);
+    }
+    @each $name, $value in $font-weights {
+        #{$cssvar}font-weight-#{$name}  : #{$value};
+    }
 
-    #{$cssvar}color                    : #{$color};
-    #{$cssvar}background               : #{$background};
-}}
+
+    #{$cssvar}font-style: $font-style;
+    
+
+    @if (map.has-key($lineheights, default)) {
+        #{$cssvar}lineheight           : var(#{$cssvar}lineheight-default);
+    }
+    @each $name, $value in $lineheights {
+        #{$cssvar}lineheight-#{$name}  : #{$value};
+    }
+
+
+    #{$cssvar}color                     : #{$color};
+    #{$cssvar}backg                     : #{$backg};
+}
 
 
 
+/* begin: general style */
+@mixin _style($include) {
+    @if ($include) { @include  base.style; }
+    @else          { @extend #{base.$alias} !optional; }
+
+    
+    font-size       : var(#{$cssvar}font-size-default);
+    font-family     : var(#{$cssvar}font-family-default);
+    font-weight     : var(#{$cssvar}font-weight-default);
+    font-style      : var(#{$cssvar}font-style);
+    line-height     : var(#{$cssvar}lineheight-default);
+
+    color           : var(#{$cssvar}color);
+    background      : var(#{$cssvar}backg);
+}
 @mixin style {
-    font-size   : var(#{$cssvar}font-size);
-    font-family : var(#{$cssvar}font-family);
-    font-weight : var(#{$cssvar}font-weight);
-    line-height : var(#{$cssvar}lineheight);
+    @include _style(true);
+}
+@include alias($alias) {
+    @include _style(false);
+}
+/* end: general style */
 
-    color       : var(#{$cssvar}color); // currentColor
-    background  : var(#{$cssvar}background); // backgroundColor
-}
-@if ($class) {
-    #{$class} { @include style; }
-}
+
+
+@include class($alias, $class, "");
