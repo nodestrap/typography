@@ -1,6 +1,6 @@
 {
   "name": "@heymarco/typography",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "provides basic texting  of headings, body text, lists, and more.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,7 +26,7 @@
   "homepage": "https://github.com/heyymarco/typography#readme",
   "dependencies": {
     "@heymarco/border": "^1.0.7",
-    "@heymarco/colors": "^1.0.10",
+    "@heymarco/colors": "^1.0.15",
     "@heymarco/sass-class-template": "^1.0.6",
     "@heymarco/sass-selector": "^1.0.5",
     "@heymarco/sass-string": "^1.0.1",
