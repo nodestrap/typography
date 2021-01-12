@@ -1,9 +1,11 @@
 {
   "name": "@heymarco/typography",
-  "version": "1.0.11",
+  "version": "2.0.0",
   "description": "provides basic texting  of headings, body text, lists, and more.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "sass --load-path=node_modules test.scss:test.css --no-source-map",
+    "watch": "sass --load-path=node_modules src:dist --style compressed --watch",
+    "build": "sass --load-path=node_modules src:dist --style compressed"
   },
   "repository": {
     "type": "git",
@@ -25,11 +27,14 @@
   },
   "homepage": "https://github.com/heyymarco/typography#readme",
   "dependencies": {
-    "@heymarco/border": "^1.0.7",
-    "@heymarco/colors": "^1.0.15",
-    "@heymarco/sass-class-template": "^1.0.6",
-    "@heymarco/sass-selector": "^1.0.5",
-    "@heymarco/sass-string": "^1.0.1",
-    "@heymarco/spacer": "^1.0.6"
+    "@heymarco/border": "^2.0.0",
+    "@heymarco/colors": "^2.0.0",
+    "@heymarco/sass-class-template": "^2.0.0",
+    "@heymarco/sass-selector": "^2.0.0",
+    "@heymarco/sass-string": "^2.0.1",
+    "@heymarco/spacer": "^2.0.0"
+  },
+  "devDependencies": {
+    "sass": "^1.32.4"
   }
 }
