@@ -22,14 +22,14 @@ $margin-left        : 0px                                   !default;
 $margin-right       : 0px                                   !default;
 
 
-$dt-font-size       : unset                                 !default;
-$dt-font-family     : unset                                 !default;
+$dt-font-size       : var(#{gen.$cssvar}font-size)          !default;
+$dt-font-family     : var(#{gen.$cssvar}font-family)        !default;
 $dt-font-weight     : var(#{gen.$cssvar}font-weight-bold)   !default;
-$dt-font-style      : unset                                 !default;
-$dt-text-decoration : unset                                 !default;
-$dt-lineheight      : unset                                 !default;
+$dt-font-style      : var(#{gen.$cssvar}font-style)         !default;
+$dt-text-decoration : var(#{gen.$cssvar}text-decoration)    !default;
+$dt-lineheight      : var(#{gen.$cssvar}lineheight)         !default;
 
-$dt-color           : unset                                 !default;
+$dt-color           : var(#{gen.$cssvar}color)              !default;
 
 $dt-margin-top      : 0px                                   !default;
 $dt-margin-bottom   : 0px                                   !default;
@@ -37,14 +37,14 @@ $dt-margin-left     : 0px                                   !default;
 $dt-margin-right    : 0px                                   !default;
 
 
-$dd-font-size       : unset                                 !default;
-$dd-font-family     : unset                                 !default;
-$dd-font-weight     : unset                                 !default;
-$dd-font-style      : unset                                 !default;
-$dd-text-decoration : unset                                 !default;
-$dd-lineheight      : unset                                 !default;
+$dd-font-size       : var(#{gen.$cssvar}font-size)          !default;
+$dd-font-family     : var(#{gen.$cssvar}font-family)        !default;
+$dd-font-weight     : var(#{gen.$cssvar}font-weight)        !default;
+$dd-font-style      : var(#{gen.$cssvar}font-style)         !default;
+$dd-text-decoration : var(#{gen.$cssvar}text-decoration)    !default;
+$dd-lineheight      : var(#{gen.$cssvar}lineheight)         !default;
 
-$dd-color           : unset                                 !default;
+$dd-color           : var(#{gen.$cssvar}color)              !default;
 
 $dd-margin-top      : 0px                                   !default;
 $dd-margin-bottom   : var(#{$spacer-cssvar}sm)              !default;

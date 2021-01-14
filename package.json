@@ -1,15 +1,24 @@
 {
-  "name": "@heymarco/typography",
+  "name": "@nodestrap/typography",
   "version": "2.0.0",
-  "description": "provides basic texting  of headings, body text, lists, and more.",
+  "description": "Provides basic texting of headings, paragraph, fonts, lists, and more.",
+  "dependencies": {
+    "@nodestrap/border": "^2.0.0",
+    "@nodestrap/colors": "^2.0.1",
+    "@nodestrap/sass-class-template": "^2.0.2",
+    "@nodestrap/sass-selector": "^2.0.1",
+    "@nodestrap/spacer": "^2.0.0"
+  },
+  "devDependencies": {
+    "tilde-sass": "^1.0.0"
+  },
   "scripts": {
-    "test": "sass --load-path=node_modules test.scss:test.css --no-source-map",
-    "watch": "sass --load-path=node_modules src:dist --style compressed --watch",
-    "build": "sass --load-path=node_modules src:dist --style compressed"
+    "test": "tilde-sass --file test/*.scss --outFile test/",
+    "compile": "tilde-sass --file src/*.scss --outFile dist/ --outputStyle compressed"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/heyymarco/typography.git"
+    "url": "git+https://github.com/nodestrap/typography.git"
   },
   "keywords": [
     "text",
@@ -17,24 +26,12 @@
     "heading",
     "paragraph",
     "inline",
-    "utilities",
-    "alignment"
+    "utilities"
   ],
-  "author": "HeyMarco",
+  "author": "nodestrap, heymarco",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/heyymarco/typography/issues"
+    "url": "https://github.com/nodestrap/typography/issues"
   },
-  "homepage": "https://github.com/heyymarco/typography#readme",
-  "dependencies": {
-    "@heymarco/border": "^2.0.0",
-    "@heymarco/colors": "^2.0.0",
-    "@heymarco/sass-class-template": "^2.0.0",
-    "@heymarco/sass-selector": "^2.0.0",
-    "@heymarco/sass-string": "^2.0.1",
-    "@heymarco/spacer": "^2.0.0"
-  },
-  "devDependencies": {
-    "sass": "^1.32.4"
-  }
+  "homepage": "https://github.com/nodestrap/typography#readme"
 }

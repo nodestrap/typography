@@ -5,6 +5,7 @@
 
 @use "dependencies" as *;
 @use "base"         as base;
+@use "general"      as gen;
 
 
 
@@ -15,14 +16,14 @@ $var-prefix         : "second"                              !default;
 $var-prefix-base    : base.$var-prefix                      !default;
 $cssvar: make-cssvar($var-prefix, $var-prefix-base);
 
-$font-size          : unset                                 !default;      
-$font-family        : unset                                 !default;
-$font-weight        : unset                                 !default;
-$font-style         : unset                                 !default;
-$text-decoration    : unset                                 !default;
-$lineheight         : unset                                 !default;
+$font-size          : var(#{gen.$cssvar}font-size)          !default;
+$font-family        : var(#{gen.$cssvar}font-family)        !default;
+$font-weight        : var(#{gen.$cssvar}font-weight)        !default;
+$font-style         : var(#{gen.$cssvar}font-style)         !default;
+$text-decoration    : var(#{gen.$cssvar}text-decoration)    !default;
+$lineheight         : var(#{gen.$cssvar}lineheight)         !default;
 
-$color              : unset                                 !default;
+$color              : var(#{gen.$cssvar}color)              !default;
 $opacity            : 0.63                                  !default;
 
 

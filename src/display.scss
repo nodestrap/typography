@@ -129,4 +129,5 @@ $margin-right                   : var(#{head.$cssvar}margin-right)      !default
 
 
 // abstract class => no emit class
+// implemented in sub-class display-1 to display-6
 // @include class($alias, $class, "");

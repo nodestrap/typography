@@ -1,6 +1,5 @@
-@forward "@heymarco/sass-class-template/src/index";
-@forward "@heymarco/sass-selector/src/index"          as selector-*;
-@forward "@heymarco/colors/src/index"                 as color-*;
-@forward "@heymarco/border/src/index"                 as border-*;
-@forward "@heymarco/sass-string/src/index"            as string-*;
-@forward "@heymarco/spacer/src/index"                 as spacer-*;
+@forward "~@nodestrap/sass-class-template/src/index";
+@forward "~@nodestrap/sass-selector/src/index"          as selector-*;
+@forward "~@nodestrap/colors/src/index"                 as color-*;
+@forward "~@nodestrap/border/src/index"                 as border-*;
+@forward "~@nodestrap/spacer/src/index"                 as spacer-*;

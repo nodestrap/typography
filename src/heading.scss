@@ -35,13 +35,13 @@ $font-sizes: map.merge((
     1      : $font-size-1,
 ), $font-sizes);
 
-$font-family                    : unset                                 !default;
+$font-family                    : var(#{gen.$cssvar}font-family)        !default;
 $font-weight                    : 500                                   !default;
-$font-style                     : unset                                 !default;
-$text-decoration                : unset                                 !default;
+$font-style                     : var(#{gen.$cssvar}font-style)         !default;
+$text-decoration                : var(#{gen.$cssvar}text-decoration)    !default;
 $lineheight                     : 1.25                                  !default;
 
-$color                          : unset                                 !default;
+$color                          : var(#{gen.$cssvar}color)              !default;
 
 $margin-top                     : unset                                 !default;
 $margin-bottom                  : calc(var(#{$cssvar}font-size) * 0.75) !default;
@@ -128,4 +128,5 @@ $margin-right                   : unset                                 !default
 
 
 // abstract class => no emit class
+// implemented in sub-class h-1 to h-6
 // @include class($alias, $class, "");

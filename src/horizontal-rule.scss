@@ -16,7 +16,7 @@ $var-prefix         : "hr"                                  !default;
 $var-prefix-base    : base.$var-prefix                      !default;
 $cssvar: make-cssvar($var-prefix, $var-prefix-base);
 
-$color              : currentColor                          !default;
+$color              : var(#{gen.$cssvar}color)              !default;
 $opacity            : 0.25                                  !default;
 
 $height             : var(#{$border-cssvar}hair)            !default;
