@@ -9,12 +9,11 @@
 
 
 
-$alias              : "%typo-horz"                          !default;
 $class              : "hr"                                  !default;
 $var-root           : base.$var-root                        !default;
 $var-prefix         : "hr"                                  !default;
 $var-prefix-base    : base.$var-prefix                      !default;
-$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+$var: make-var($var-prefix, $var-prefix-base);
 
 $color              : var(#{gen.$cssvar}color)              !default;
 $opacity            : 0.25                                  !default;
@@ -43,7 +42,7 @@ $margin-right       : unset                                 !default;
 
 
 /* begin: general style */
-@mixin _style($include) {
+@mixin style {
     @if ($include) { @include  base.style; }
     @else          { @extend #{base.$alias} !optional; }
 
@@ -61,14 +60,8 @@ $margin-right       : unset                                 !default;
 
     border              : 0px;
 }
-@mixin style {
-    @include _style(true);
-}
-@include alias($alias) {
-    @include _style(false);
-}
 /* end: general style */
 
 
 
-@include class($alias, $class, "");
+@include class($class) { @include style; }

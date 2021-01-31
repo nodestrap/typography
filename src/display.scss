@@ -13,12 +13,11 @@
 
 
 
-$alias              : "%typo-display"                       !default;
 $class              : ".display-"                           !default;
 $var-root           : base.$var-root                        !default;
 $var-prefix         : "disp"                                !default;
 $var-prefix-base    : base.$var-prefix                      !default;
-$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+$var: make-var($var-prefix, $var-prefix-base);
 
 $font-size-6        : calc(2.50 * var(#{gen.$cssvar}font-size-default)) !default;
 $font-size-5        : calc(3.00 * var(#{gen.$cssvar}font-size-default)) !default;
@@ -99,7 +98,7 @@ $margin-right                   : var(#{head.$cssvar}margin-right)      !default
 
 
 /* begin: general style */
-@mixin _style($include) {
+@mixin style {
     @if ($include) { @include  base.style; }
     @else          { @extend #{base.$alias} !optional; }
 
@@ -118,16 +117,10 @@ $margin-right                   : var(#{head.$cssvar}margin-right)      !default
     margin-left     : var(#{$cssvar}margin-left);
     margin-right    : var(#{$cssvar}margin-right);
 }
-@mixin style {
-    @include _style(true);
-}
-@include alias($alias) {
-    @include _style(false);
-}
 /* end: general style */
 
 
 
 // abstract class => no emit class
 // implemented in sub-class display-1 to display-6
-// @include class($alias, $class, "");
+// @include class($class) { @include style; }

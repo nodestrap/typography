@@ -9,12 +9,11 @@
 
 
 
-$alias              : "%typo-desc-list"                     !default;
 $class              : "dl"                                  !default;
 $var-root           : base.$var-root                        !default;
 $var-prefix         : "dl"                                  !default;
 $var-prefix-base    : base.$var-prefix                      !default;
-$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+$var: make-var($var-prefix, $var-prefix-base);
 
 $margin-top         : 0px                                   !default;
 $margin-bottom      : var(#{$spacer-cssvar}default)         !default;
@@ -93,7 +92,7 @@ $dd-margin-right    : 0px                                   !default;
 
 
 /* begin: general style */
-@mixin _style($include) {
+@mixin style {
     @if ($include) { @include  base.style; }
     @else          { @extend #{base.$alias} !optional; }
 
@@ -137,14 +136,8 @@ $dd-margin-right    : 0px                                   !default;
         margin-right    : var(#{$cssvar}dd-margin-right);
     }
 }
-@mixin style {
-    @include _style(true);
-}
-@include alias($alias) {
-    @include _style(false);
-}
 /* end: general style */
 
 
 
-@include class($alias, $class, "");
+@include class($class) { @include style; }

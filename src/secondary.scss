@@ -9,12 +9,11 @@
 
 
 
-$alias              : "%typo-secondary"                     !default;
 $class              : "small, .text-second"                 !default;
 $var-root           : base.$var-root                        !default;
 $var-prefix         : "second"                              !default;
 $var-prefix-base    : base.$var-prefix                      !default;
-$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+$var: make-var($var-prefix, $var-prefix-base);
 
 $font-size          : var(#{gen.$cssvar}font-size)          !default;
 $font-family        : var(#{gen.$cssvar}font-family)        !default;
@@ -43,7 +42,7 @@ $opacity            : 0.63                                  !default;
 
 
 /* begin: general style */
-@mixin _style($include) {
+@mixin style {
     @if ($include) { @include  base.style; }
     @else          { @extend #{base.$alias} !optional; }
 
@@ -58,14 +57,8 @@ $opacity            : 0.63                                  !default;
     color           : var(#{$cssvar}color);
     opacity         : var(#{$cssvar}opacity);
 }
-@mixin style {
-    @include _style(true);
-}
-@include alias($alias) {
-    @include _style(false);
-}
 /* end: general style */
 
 
 
-@include class($alias, $class, "");
+@include class($class) { @include style; }

@@ -10,12 +10,11 @@
 
 
 
-$alias              : "%typo-marking-code"                  !default;
 $class              : "code, .code"                         !default;
 $var-root           : base.$var-root                        !default;
 $var-prefix         : "code"                                !default;
 $var-prefix-base    : base.$var-prefix                      !default;
-$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+$var: make-var($var-prefix, $var-prefix-base);
 
 $font-size          : calc((var(#{gen.$cssvar}font-size-md) + var(#{gen.$cssvar}font-size-sm)) / 2) !default;
 $font-family        : var(#{gen.$cssvar}font-family-monospace) !default;
@@ -60,7 +59,7 @@ $border-radius      : unset                                 !default;
 
 
 /* begin: general style */
-@mixin _style($include) {
+@mixin style {
     @if ($include) { @include  base.style; }
     @else          { @extend #{base.$alias} !optional; }
 
@@ -86,14 +85,8 @@ $border-radius      : unset                                 !default;
     unicode-bidi    : bidi-override;
     word-wrap       : break-word;
 }
-@mixin style {
-    @include _style(true);
-}
-@include alias($alias) {
-    @include _style(false);
-}
 /* end: general style */
 
 
 
-@include class($alias, $class, "");
+@include class($class) { @include style; }

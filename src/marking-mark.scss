@@ -9,12 +9,11 @@
 
 
 
-$alias              : "%typo-marking-mark"                  !default;
 $class              : "mark, .mark"                         !default;
 $var-root           : base.$var-root                        !default;
 $var-prefix         : "mark"                                !default;
 $var-prefix-base    : base.$var-prefix                      !default;
-$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+$var: make-var($var-prefix, $var-prefix-base);
 
 $font-size          : var(#{gen.$cssvar}font-size)          !default;
 $font-family        : var(#{gen.$cssvar}font-family)        !default;
@@ -71,7 +70,7 @@ $border-radius      : var(#{$border-radius-cssvar}sm)       !default;
 
 
 /* begin: general style */
-@mixin _style($include) {
+@mixin style {
     @if ($include) { @include  base.style; }
     @else          { @extend #{base.$alias} !optional; }
 
@@ -93,14 +92,8 @@ $border-radius      : var(#{$border-radius-cssvar}sm)       !default;
     border          : var(#{$cssvar}border);
     border-radius   : var(#{$cssvar}border-radius);
 }
-@mixin style {
-    @include _style(true);
-}
-@include alias($alias) {
-    @include _style(false);
-}
 /* end: general style */
 
 
 
-@include class($alias, $class, "");
+@include class($class) { @include style; }

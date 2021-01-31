@@ -9,12 +9,11 @@
 
 
 
-$alias              : "%typo-marking-general"               !default;
 $class              : ""                                    !default;
 $var-root           : base.$var-root                        !default;
 $var-prefix         : "gen"                                 !default;
 $var-prefix-base    : base.$var-prefix                      !default;
-$cssvar: make-cssvar($var-prefix, $var-prefix-base);
+$var: make-var($var-prefix, $var-prefix-base);
 
 
 
@@ -24,7 +23,7 @@ $cssvar: make-cssvar($var-prefix, $var-prefix-base);
 
 
 /* begin: general style */
-@mixin _style($include) {
+@mixin style {
     del, s {
         text-decoration: line-through;
     }
@@ -45,15 +44,9 @@ $cssvar: make-cssvar($var-prefix, $var-prefix-base);
         font-style: italic;
     }
 }
-@mixin style {
-    @include _style(true);
-}
-@include alias($alias) {
-    @include _style(false);
-}
 /* end: general style */
 
 
 
-// @include class($alias, $class, "");
+// @include class($class) { @include style; }
 @include style;
