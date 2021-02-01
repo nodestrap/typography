@@ -3,12 +3,12 @@
 
 
 
-@use "dependencies" as *;
-@use "base"         as base;
+@use "~@nodestrap/sass-class-template/src/index" as *;
+@use "~@nodestrap/colors/src/index"              as color;
 
+@use "base"                                      as base;
 
-
-@use    "sass:map"     as map;
+@use "sass:map"                                  as map;
 
 
 
@@ -18,17 +18,17 @@ $var-prefix         : ""                                    !default;
 $var-prefix-base    : base.$var-prefix                      !default;
 $var: make-var($var-prefix, $var-prefix-base);
 
-$font-size                      :      var(#{$cssvar}font-size-default)     !default;
-$font-size-default              :      var(#{$cssvar}font-size-nm)          !default;
-$font-size-xs                   : calc(var(#{$cssvar}font-size-nm) * 0.50)  !default;
-$font-size-sm                   : calc(var(#{$cssvar}font-size-nm) * 0.75)  !default;
-$font-size-nm                   : 1.00rem                                   !default;
-$font-size-md                   : calc(var(#{$cssvar}font-size-nm) * 1.25)  !default;
-$font-size-lg                   : calc(var(#{$cssvar}font-size-nm) * 1.50)  !default;
-$font-size-xl                   : calc(var(#{$cssvar}font-size-nm) * 1.75)  !default;
-$font-size-xxl                  : calc(var(#{$cssvar}font-size-nm) * 2.00)  !default;
-$font-size-xxxl                 : calc(var(#{$cssvar}font-size-nm) * 2.25)  !default;
-$font-sizes                     : ()                                        !default;
+$font-size                      :      var(#{$var}font-size-default)    !default;
+$font-size-default              :      var(#{$var}font-size-nm)         !default;
+$font-size-xs                   : calc(var(#{$var}font-size-nm) * 0.50) !default;
+$font-size-sm                   : calc(var(#{$var}font-size-nm) * 0.75) !default;
+$font-size-nm                   : 1.00rem                               !default;
+$font-size-md                   : calc(var(#{$var}font-size-nm) * 1.25) !default;
+$font-size-lg                   : calc(var(#{$var}font-size-nm) * 1.50) !default;
+$font-size-xl                   : calc(var(#{$var}font-size-nm) * 1.75) !default;
+$font-size-xxl                  : calc(var(#{$var}font-size-nm) * 2.00) !default;
+$font-size-xxxl                 : calc(var(#{$var}font-size-nm) * 2.25) !default;
+$font-sizes                     : ()                                    !default;
 $font-sizes: map.merge((
     default : $font-size-default,
     xs      : $font-size-xs,
@@ -41,8 +41,8 @@ $font-sizes: map.merge((
     xxxl    : $font-size-xxxl,
 ), $font-sizes);
 
-$font-family                    : var(#{$cssvar}font-family-default)    !default;
-$font-family-default            : var(#{$cssvar}font-family-sans-serif) !default;
+$font-family                    : var(#{$var}font-family-default)       !default;
+$font-family-default            : var(#{$var}font-family-sans-serif)    !default;
 $font-family-sans-serif         : system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-monospace          : SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-families                  : ()                                    !default;
@@ -52,8 +52,8 @@ $font-families: map.merge((
     monospace   : $font-family-monospace,
 ), $font-families);
 
-$font-weight                    : var(#{$cssvar}font-weight-default)    !default;
-$font-weight-default            : var(#{$cssvar}font-weight-normal)     !default;
+$font-weight                    : var(#{$var}font-weight-default)       !default;
+$font-weight-default            : var(#{$var}font-weight-normal)        !default;
 $font-weight-lighter            : lighter                               !default;
 $font-weight-light              : 300                                   !default;
 $font-weight-normal             : 400                                   !default;
@@ -72,82 +72,81 @@ $font-weights: map.merge((
 $font-style                     : unset                                 !default;
 $text-decoration                : unset                                 !default;
 
-$lineheight                     : var(#{$cssvar}lineheight-default)     !default;
-$lineheight-default             : var(#{$cssvar}lineheight-nm)          !default;
-$lineheight-sm                  : 1.25                                  !default;
-$lineheight-nm                  : 1.50                                  !default;
-$lineheight-lg                  : 2.00                                  !default;
-$lineheights                    : ()                                    !default;
-$lineheights: map.merge((
-    default : $lineheight-default,
-    sm      : $lineheight-sm,
-    nm      : $lineheight-nm,
-    lg      : $lineheight-lg,
-), $lineheights);
+$line-height                    : var(#{$var}line-height-default)       !default;
+$line-height-default            : var(#{$var}line-height-nm)            !default;
+$line-height-sm                 : 1.25                                  !default;
+$line-height-nm                 : 1.50                                  !default;
+$line-height-lg                 : 2.00                                  !default;
+$line-heights                   : ()                                    !default;
+$line-heights: map.merge((
+    default : $line-height-default,
+    sm      : $line-height-sm,
+    nm      : $line-height-nm,
+    lg      : $line-height-lg,
+), $line-heights);
 
-$color                          : var(#{$color-cssvar}dark)             !default;
-$backg                          : var(#{$color-cssvar}white)            !default;
+$color                          : var(#{color.$var}dark)                !default;
+$backg                          : var(#{color.$var}white)               !default;
 
 
 
-@include declare-cssvar($var-root) {
+@include declare-vars($var-root) {
     @if (map.has-key($font-sizes, default)) {
-        #{$cssvar}font-size             : var(#{$cssvar}font-size-default);
+        #{$var}font-size            : var(#{$var}font-size-default);
     }
     @each $name, $value in $font-sizes {
-        #{$cssvar}font-size-#{$name}    : #{$value};
+        #{$var}font-size-#{$name}   : $value;
     }
 
     
     @if (map.has-key($font-families, default)) {
-        #{$cssvar}font-family           : var(#{$cssvar}font-family-default);
+        #{$var}font-family          : var(#{$var}font-family-default);
     }
     @each $name, $value in $font-families {
-        #{$cssvar}font-family-#{$name}  : #{$value};
+        #{$var}font-family-#{$name} : $value;
     }
     
     
     @if (map.has-key($font-weights, default)) {
-        #{$cssvar}font-weight           : var(#{$cssvar}font-weight-default);
+        #{$var}font-weight          : var(#{$var}font-weight-default);
     }
     @each $name, $value in $font-weights {
-        #{$cssvar}font-weight-#{$name}  : #{$value};
+        #{$var}font-weight-#{$name} : $value;
     }
 
 
-    #{$cssvar}font-style        : $font-style;
-    #{$cssvar}text-decoration   : $text-decoration;
+    #{$var}font-style               : $font-style;
+    #{$var}text-decoration          : $text-decoration;
     
 
-    @if (map.has-key($lineheights, default)) {
-        #{$cssvar}lineheight           : var(#{$cssvar}lineheight-default);
+    @if (map.has-key($line-heights, default)) {
+        #{$var}line-height          : var(#{$var}line-height-default);
     }
-    @each $name, $value in $lineheights {
-        #{$cssvar}lineheight-#{$name}  : #{$value};
+    @each $name, $value in $line-heights {
+        #{$var}line-height-#{$name} : $value;
     }
 
 
-    #{$cssvar}color                     : #{$color};
-    #{$cssvar}backg                     : #{$backg};
+    #{$var}color                    : $color;
+    #{$var}backg                    : $backg;
 }
 
 
 
 /* begin: general style */
 @mixin style {
-    @if ($include) { @include  base.style; }
-    @else          { @extend #{base.$alias} !optional; }
+    @include base.style;
 
     
-    font-size       : var(#{$cssvar}font-size-default);
-    font-family     : var(#{$cssvar}font-family-default);
-    font-weight     : var(#{$cssvar}font-weight-default);
-    font-style      : var(#{$cssvar}font-style);
-    text-decoration : var(#{$cssvar}text-decoration);
-    line-height     : var(#{$cssvar}lineheight-default);
+    font-size       : var(#{$var}font-size-default);
+    font-family     : var(#{$var}font-family-default);
+    font-weight     : var(#{$var}font-weight-default);
+    font-style      : var(#{$var}font-style);
+    text-decoration : var(#{$var}text-decoration);
+    line-height     : var(#{$var}line-height-default);
 
-    color           : var(#{$cssvar}color);
-    background      : var(#{$cssvar}backg);
+    color           : var(#{$var}color);
+    background      : var(#{$var}backg);
 }
 /* end: general style */
 

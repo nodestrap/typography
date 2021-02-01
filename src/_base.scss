@@ -2,7 +2,7 @@
 
 
 
-@use "dependencies" as *;
+@use "~@nodestrap/sass-class-template/src/index" as *;
 
 
 
@@ -16,13 +16,21 @@ $var: make-var($var-prefix, $var-prefix-base);
 
 
 
-@include declare-cssvar($var-root) {
+@include declare-vars($var-root) {
 }
 
 
 
 /* begin: general style */
-@mixin style {
+@mixin style($var: $var) {
+    font-size            : var(#{$var}font-size);
+    font-family          : var(#{$var}font-family);
+    font-weight          : var(#{$var}font-weight);
+    font-style           : var(#{$var}font-style);
+    text-decoration      : var(#{$var}text-decoration);
+    line-height          : var(#{$var}line-height);
+
+    color                : var(#{$var}color);
 }
 /* end: general style */
 

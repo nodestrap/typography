@@ -1,11 +1,11 @@
 @forward "general";
 @forward "secondary"        as second-*;
 
-@forward "heading"          as h-*;
-@forward "display"          as disp-*;
-
 @forward "paragraph"        as p-*;
 @forward "lead"             as lead-*;
+
+@forward "heading"          as h-*;
+@forward "display"          as disp-*;
 
 @forward "blockquote"       as bquote-*;
 

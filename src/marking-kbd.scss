@@ -3,10 +3,12 @@
 
 
 
-@use "dependencies" as *;
-@use "base"         as base;
-@use "marking-mark" as mark;
-@use "marking-code" as code;
+@use "~@nodestrap/sass-class-template/src/index" as *;
+@use "~@nodestrap/colors/src/index"              as color;
+
+@use "base"                                      as base;
+@use "marking-mark"                              as mark;
+@use "marking-code"                              as code;
 
 
 
@@ -16,76 +18,49 @@ $var-prefix         : "kbd"                                 !default;
 $var-prefix-base    : base.$var-prefix                      !default;
 $var: make-var($var-prefix, $var-prefix-base);
 
-$font-size          : var(#{code.$cssvar}font-size)         !default;
-$font-family        : var(#{code.$cssvar}font-family)       !default;
-$font-weight        : var(#{code.$cssvar}font-weight)       !default;
-$font-style         : var(#{code.$cssvar}font-style)        !default;
-$text-decoration    : var(#{code.$cssvar}text-decoration)   !default;
-$lineheight         : var(#{code.$cssvar}lineheight)        !default;
+$font-size          : var(#{code.$var}font-size)            !default;
+$font-family        : var(#{code.$var}font-family)          !default;
+$font-weight        : var(#{code.$var}font-weight)          !default;
+$font-style         : var(#{code.$var}font-style)           !default;
+$text-decoration    : var(#{code.$var}text-decoration)      !default;
+$line-height        : var(#{code.$var}line-height)          !default;
 
-$color              : var(#{$color-cssvar}white)            !default;
-$backg              : var(#{$color-cssvar}gray-dark)        !default;
+$color              : var(#{color.$var}white)               !default;
+$backg              : var(#{color.$var}gray-dark)           !default;
 
-$padding-x          : 0.4rem                                !default;
-$padding-y          : 0.2rem                                !default;
-$border             : var(#{mark.$cssvar}border)            !default;
-$border-radius      : var(#{mark.$cssvar}border-radius)     !default;
+$padding-x          : 0.4em                                 !default;
+$padding-y          : 0.2em                                 !default;
+$border             : var(#{mark.$var}border)               !default;
+$border-radius      : var(#{mark.$var}border-radius)        !default;
 
 
 
-@include declare-cssvar($var-root) {
-    #{$cssvar}font-size         : #{$font-size};
-    #{$cssvar}font-family       : #{$font-family};
-    #{$cssvar}font-weight       : #{$font-weight};
-    #{$cssvar}font-style        : #{$font-style};
-    #{$cssvar}text-decoration   : #{$text-decoration};
-    #{$cssvar}lineheight        : #{$lineheight};
+@include declare-vars($var-root) {
+    #{$var}font-size                : $font-size;
+    #{$var}font-family              : $font-family;
+    #{$var}font-weight              : $font-weight;
+    #{$var}font-style               : $font-style;
+    #{$var}text-decoration          : $text-decoration;
+    #{$var}line-height              : $line-height;
 
-    #{$cssvar}color             : #{$color};
-    #{$cssvar}backg             : #{$backg};
+    #{$var}color                    : $color;
+    #{$var}backg                    : $backg;
 
-    #{$cssvar}padding-x         : #{$padding-x};
-    #{$cssvar}padding-y         : #{$padding-y};
-    #{$cssvar}border            : #{$border};
-    #{$cssvar}border-radius     : #{$border-radius};
+    #{$var}padding-x                : $padding-x;
+    #{$var}padding-y                : $padding-y;
+    #{$var}border                   : $border;
+    #{$var}border-radius            : $border-radius;
 }
 
 
 
-/* begin: specialized style */
 @include mark.style-nested-self($class);
-/* end: specialized style */
 
 
 
-/* begin: general style */
-@mixin style {
-    @if ($include) { @include  base.style; }
-    @else          { @extend #{base.$alias} !optional; }
-
-
-    font-size       : var(#{$cssvar}font-size);
-    font-family     : var(#{$cssvar}font-family);
-    font-weight     : var(#{$cssvar}font-weight);
-    font-style      : var(#{$cssvar}font-style);
-    text-decoration : var(#{$cssvar}text-decoration);
-    line-height     : var(#{$cssvar}lineheight);
-
-    color           : var(#{$cssvar}color);
-    background      : var(#{$cssvar}backg);
-    
-    padding-left    : var(#{$cssvar}padding-x);
-    padding-right   : var(#{$cssvar}padding-x);
-    padding-top     : var(#{$cssvar}padding-y);
-    padding-bottom  : var(#{$cssvar}padding-y);
-    border          : var(#{$cssvar}border);
-    border-radius   : var(#{$cssvar}border-radius);
-
-    direction       : ltr;
-    unicode-bidi    : bidi-override;
-    word-wrap       : break-word;
+@mixin style($var: $var) {
+    @include code.style($var: $var);
 }
-/* end: general style */
 
 
 

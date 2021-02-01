@@ -3,9 +3,13 @@
 
 
 
-@use "dependencies" as *;
-@use "base"         as base;
-@use "general"      as gen;
+@use "~@nodestrap/sass-class-template/src/index" as *;
+@use "~@nodestrap/selector/src/index"            as selector;
+@use "~@nodestrap/colors/src/index"              as color;
+@use "~@nodestrap/border/src/index"              as border;
+
+@use "base"                                      as base;
+@use "general"                                   as gen;
 
 
 
@@ -15,84 +19,68 @@ $var-prefix         : "mark"                                !default;
 $var-prefix-base    : base.$var-prefix                      !default;
 $var: make-var($var-prefix, $var-prefix-base);
 
-$font-size          : var(#{gen.$cssvar}font-size)          !default;
-$font-family        : var(#{gen.$cssvar}font-family)        !default;
-$font-weight        : var(#{gen.$cssvar}font-weight)        !default;
-$font-style         : var(#{gen.$cssvar}font-style)         !default;
-$text-decoration    : var(#{gen.$cssvar}text-decoration)    !default;
-$lineheight         : var(#{gen.$cssvar}lineheight)         !default;
+$font-size          : inherit                               !default;
+$font-family        : inherit                               !default;
+$font-weight        : inherit                               !default;
+$font-style         : inherit                               !default;
+$text-decoration    : inherit                               !default;
+$line-height        : inherit                               !default;
 
-$color              : var(#{gen.$cssvar}color)              !default;
-$backg              : var(#{$color-cssvar}warning-transp)   !default;
+$color              : inherit                               !default;
+$backg              : var(#{color.$var}warning-transp)      !default;
 
 $padding-x          : 0.2em                                 !default;
-$padding-y          : 0.2em                                 !default;
-$border             : var(#{$border-cssvar}hair)            !default;
-$border-radius      : var(#{$border-radius-cssvar}sm)       !default;
+$padding-y          : 0em                                   !default;
+$border             : var(#{border.$var}hair) var(#{border.$var}style) var(#{border.$var}color) !default;
+$border-radius      : var(#{border.$radius-var}sm)          !default;
 
 
 
-@include declare-cssvar($var-root) {
-    #{$cssvar}font-size         : #{$font-size};
-    #{$cssvar}font-family       : #{$font-family};
-    #{$cssvar}font-weight       : #{$font-weight};
-    #{$cssvar}font-style        : #{$font-style};
-    #{$cssvar}text-decoration   : #{$text-decoration};
-    #{$cssvar}lineheight        : #{$lineheight};
+@include declare-vars($var-root) {
+    #{$var}font-size                : $font-size;
+    #{$var}font-family              : $font-family;
+    #{$var}font-weight              : $font-weight;
+    #{$var}font-style               : $font-style;
+    #{$var}text-decoration          : $text-decoration;
+    #{$var}line-height              : $line-height;
 
-    #{$cssvar}color             : #{$color};
-    #{$cssvar}backg             : #{$backg};
+    #{$var}color                    : $color;
+    #{$var}backg                    : $backg;
 
-    #{$cssvar}padding-x         : #{$padding-x};
-    #{$cssvar}padding-y         : #{$padding-y};
-    #{$cssvar}border            : #{$border};
-    #{$cssvar}border-radius     : #{$border-radius};
+    #{$var}padding-x                : $padding-x;
+    #{$var}padding-y                : $padding-y;
+    #{$var}border                   : $border;
+    #{$var}border-radius            : $border-radius;
 }
 
 
 
-/* begin: specialized style */
-@include alias($alias) { @include selector-append("-nested-self") {
-    padding: 0px;
-    font-size: 1em;
-    font-weight: var(#{gen.$cssvar}font-weight-bold);
-}}
 @mixin style-nested-self($class) {
-    @include selector-is($class) {
-        @include selector-nested-self($parentheses: false) {
-            @extend #{$alias}-nested-self;
+    @include selector.is($class) {
+        @include selector.nested-self($parentheses: false) {
+            padding     : 0px;
+            font-size   : 1em;
+            font-weight : var(#{gen.$var}font-weight-bold);
         }
     }
 }
 @include style-nested-self($class);
-/* end: specialized style */
 
 
 
-/* begin: general style */
-@mixin style {
-    @if ($include) { @include  base.style; }
-    @else          { @extend #{base.$alias} !optional; }
+@mixin style($var: $var) {
+    @include base.style($var: $var);
 
 
-    font-size       : var(#{$cssvar}font-size);
-    font-family     : var(#{$cssvar}font-family);
-    font-weight     : var(#{$cssvar}font-weight);
-    font-style      : var(#{$cssvar}font-style);
-    text-decoration : var(#{$cssvar}text-decoration);
-    line-height     : var(#{$cssvar}lineheight);
+    display              : inline;
 
-    color           : var(#{$cssvar}color);
-    background      : var(#{$cssvar}backg);
+    
+    background           : var(#{$var}backg);
 
-    padding-left    : var(#{$cssvar}padding-x);
-    padding-right   : var(#{$cssvar}padding-x);
-    padding-top     : var(#{$cssvar}padding-y);
-    padding-bottom  : var(#{$cssvar}padding-y);
-    border          : var(#{$cssvar}border);
-    border-radius   : var(#{$cssvar}border-radius);
+    padding              : var(#{$var}padding-y) var(#{$var}padding-x);
+    border               : var(#{$var}border);
+    border-radius        : var(#{$var}border-radius);
 }
-/* end: general style */
 
 
 

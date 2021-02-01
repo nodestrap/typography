@@ -3,9 +3,11 @@
 
 
 
-@use "dependencies" as *;
-@use "base"         as base;
-@use "general"      as gen;
+@use "~@nodestrap/sass-class-template/src/index" as *;
+@use "~@nodestrap/spacer/src/index"              as spacer;
+
+@use "base"                                      as base;
+@use "paragraph"                                 as para;
 
 
 
@@ -15,128 +17,104 @@ $var-prefix         : "dl"                                  !default;
 $var-prefix-base    : base.$var-prefix                      !default;
 $var: make-var($var-prefix, $var-prefix-base);
 
-$margin-top         : 0px                                   !default;
-$margin-bottom      : var(#{$spacer-cssvar}default)         !default;
-$margin-left        : 0px                                   !default;
-$margin-right       : 0px                                   !default;
+$margin-block-start     : 0px                               !default;
+$margin-block-end       : var(#{spacer.$var}default)        !default;
+$margin-inline-start    : 0px                               !default;
+$margin-inline-end      : 0px                               !default;
 
 
-$dt-font-size       : var(#{gen.$cssvar}font-size)          !default;
-$dt-font-family     : var(#{gen.$cssvar}font-family)        !default;
-$dt-font-weight     : var(#{gen.$cssvar}font-weight-bold)   !default;
-$dt-font-style      : var(#{gen.$cssvar}font-style)         !default;
-$dt-text-decoration : var(#{gen.$cssvar}text-decoration)    !default;
-$dt-lineheight      : var(#{gen.$cssvar}lineheight)         !default;
+$dt-font-size           : inherit                           !default;
+$dt-font-family         : inherit                           !default;
+$dt-font-weight         : inherit                           !default;
+$dt-font-style          : inherit                           !default;
+$dt-text-decoration     : inherit                           !default;
+$dt-line-height         : inherit                           !default;
 
-$dt-color           : var(#{gen.$cssvar}color)              !default;
+$dt-color               : inherit                           !default;
 
-$dt-margin-top      : 0px                                   !default;
-$dt-margin-bottom   : 0px                                   !default;
-$dt-margin-left     : 0px                                   !default;
-$dt-margin-right    : 0px                                   !default;
-
-
-$dd-font-size       : var(#{gen.$cssvar}font-size)          !default;
-$dd-font-family     : var(#{gen.$cssvar}font-family)        !default;
-$dd-font-weight     : var(#{gen.$cssvar}font-weight)        !default;
-$dd-font-style      : var(#{gen.$cssvar}font-style)         !default;
-$dd-text-decoration : var(#{gen.$cssvar}text-decoration)    !default;
-$dd-lineheight      : var(#{gen.$cssvar}lineheight)         !default;
-
-$dd-color           : var(#{gen.$cssvar}color)              !default;
-
-$dd-margin-top      : 0px                                   !default;
-$dd-margin-bottom   : var(#{$spacer-cssvar}sm)              !default;
-$dd-margin-left     : 0px                                   !default;
-$dd-margin-right    : 0px                                   !default;
+$dt-margin-block-start  : 0px                               !default;
+$dt-margin-block-end    : 0px                               !default;
+$dt-margin-inline-start : 0px                               !default;
+$dt-margin-inline-end   : 0px                               !default;
 
 
+$dd-font-size           : inherit                           !default;
+$dd-font-family         : inherit                           !default;
+$dd-font-weight         : inherit                           !default;
+$dd-font-style          : inherit                           !default;
+$dd-text-decoration     : inherit                           !default;
+$dd-line-height         : inherit                           !default;
 
-@include declare-cssvar($var-root) {
-    #{$cssvar}margin-top            : #{$margin-top};
-    #{$cssvar}margin-bottom         : #{$margin-bottom};
-    #{$cssvar}margin-left           : #{$margin-left};
-    #{$cssvar}margin-right          : #{$margin-right};
+$dd-color               : inherit                           !default;
 
-
-    #{$cssvar}dt-font-size          : #{$dt-font-size};
-    #{$cssvar}dt-font-family        : #{$dt-font-family};
-    #{$cssvar}dt-font-weight        : #{$dt-font-weight};
-    #{$cssvar}dt-font-style         : #{$dt-font-style};
-    #{$cssvar}dt-text-decoration    : #{$dt-text-decoration};
-    #{$cssvar}dt-lineheight         : #{$dt-lineheight};
-
-    #{$cssvar}dt-color              : #{$dt-color};
-
-    #{$cssvar}dt-margin-top         : #{$dt-margin-top};
-    #{$cssvar}dt-margin-bottom      : #{$dt-margin-bottom};
-    #{$cssvar}dt-margin-left        : #{$dt-margin-left};
-    #{$cssvar}dt-margin-right       : #{$dt-margin-right};
+$dd-margin-block-start  : 0px                               !default;
+$dd-margin-block-end    : var(#{spacer.$var}sm)             !default;
+$dd-margin-inline-start : 0px                               !default;
+$dd-margin-inline-end   : 0px                               !default;
 
 
-    #{$cssvar}dd-font-size          : #{$dd-font-size};
-    #{$cssvar}dd-font-family        : #{$dd-font-family};
-    #{$cssvar}dd-font-weight        : #{$dd-font-weight};
-    #{$cssvar}dd-font-style         : #{$dd-font-style};
-    #{$cssvar}dd-text-decoration    : #{$dd-text-decoration};
-    #{$cssvar}dd-lineheight         : #{$dd-lineheight};
 
-    #{$cssvar}dd-color              : #{$dd-color};
+@include declare-vars($var-root) {
+    #{$var}margin-block-start       : $margin-block-start;
+    #{$var}margin-block-end         : $margin-block-end;
+    #{$var}margin-inline-start      : $margin-inline-start;
+    #{$var}margin-inline-end        : $margin-inline-end;
 
-    #{$cssvar}dd-margin-top         : #{$dd-margin-top};
-    #{$cssvar}dd-margin-bottom      : #{$dd-margin-bottom};
-    #{$cssvar}dd-margin-left        : #{$dd-margin-left};
-    #{$cssvar}dd-margin-right       : #{$dd-margin-right};
+
+    #{$var}dt-font-size             : $dt-font-size;
+    #{$var}dt-font-family           : $dt-font-family;
+    #{$var}dt-font-weight           : $dt-font-weight;
+    #{$var}dt-font-style            : $dt-font-style;
+    #{$var}dt-text-decoration       : $dt-text-decoration;
+    #{$var}dt-line-height           : $dt-line-height;
+
+    #{$var}dt-color                 : $dt-color;
+
+    #{$var}dt-margin-block-start    : $dt-margin-block-start;
+    #{$var}dt-margin-block-end      : $dt-margin-block-end;
+    #{$var}dt-margin-inline-start   : $dt-margin-inline-start;
+    #{$var}dt-margin-inline-end     : $dt-margin-inline-end;
+
+
+    #{$var}dd-font-size             : $dd-font-size;
+    #{$var}dd-font-family           : $dd-font-family;
+    #{$var}dd-font-weight           : $dd-font-weight;
+    #{$var}dd-font-style            : $dd-font-style;
+    #{$var}dd-text-decoration       : $dd-text-decoration;
+    #{$var}dd-line-height           : $dd-line-height;
+
+    #{$var}dd-color                 : $dd-color;
+
+    #{$var}dd-margin-block-start    : $dd-margin-block-start;
+    #{$var}dd-margin-block-end      : $dd-margin-block-end;
+    #{$var}dd-margin-inline-start   : $dd-margin-inline-start;
+    #{$var}dd-margin-inline-end     : $dd-margin-inline-end;
 }
 
 
 
-/* begin: general style */
-@mixin style {
-    @if ($include) { @include  base.style; }
-    @else          { @extend #{base.$alias} !optional; }
+@mixin style($var: $var) {
+    // @include base.style($var: $var);
 
 
-    &:not(:first-child) { margin-top    : var(#{$cssvar}margin-top); }
-    &:not(:last-child)  { margin-bottom : var(#{$cssvar}margin-bottom); }
-    margin-left     : var(#{$cssvar}margin-left);
-    margin-right    : var(#{$cssvar}margin-right);
+    display              : block;
+    
+
+    margin-block-start   : var(#{$var}margin-block-start);
+    margin-block-end     : var(#{$var}margin-block-end);
+    margin-inline-start  : var(#{$var}margin-inline-start);
+    margin-inline-end    : var(#{$var}margin-inline-end);
 
 
     > dt {
-        font-size       : var(#{$cssvar}dt-font-size);
-        font-family     : var(#{$cssvar}dt-font-family);
-        font-weight     : var(#{$cssvar}dt-font-weight);
-        font-style      : var(#{$cssvar}dt-font-style);
-        text-decoration : var(#{$cssvar}dt-text-decoration);
-        line-height     : var(#{$cssvar}dt-lineheight);
-    
-        color           : var(#{$cssvar}dt-color);
-    
-        margin-top      : var(#{$cssvar}dt-margin-top);
-        margin-bottom   : var(#{$cssvar}dt-margin-bottom);
-        margin-left     : var(#{$cssvar}dt-margin-left);
-        margin-right    : var(#{$cssvar}dt-margin-right);
+        @include para.style($var: part-combine($var, "dt"));
     }
 
 
     > dd {
-        font-size       : var(#{$cssvar}dd-font-size);
-        font-family     : var(#{$cssvar}dd-font-family);
-        font-weight     : var(#{$cssvar}dd-font-weight);
-        font-style      : var(#{$cssvar}dd-font-style);
-        text-decoration : var(#{$cssvar}dd-text-decoration);
-        line-height     : var(#{$cssvar}dd-lineheight);
-    
-        color           : var(#{$cssvar}dd-color);
-    
-        margin-top      : var(#{$cssvar}dd-margin-top);
-        margin-bottom   : var(#{$cssvar}dd-margin-bottom);
-        margin-left     : var(#{$cssvar}dd-margin-left);
-        margin-right    : var(#{$cssvar}dd-margin-right);
+        @include para.style($var: part-combine($var, "dd"));
     }
 }
-/* end: general style */
 
 
 

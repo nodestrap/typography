@@ -3,9 +3,9 @@
 
 
 
-@use "dependencies" as *;
-@use "base"         as base;
-@use "general"      as gen;
+@use "~@nodestrap/sass-class-template/src/index" as *;
+
+@use "base"                                      as base;
 
 
 
@@ -15,61 +15,52 @@ $var-prefix         : "p"                                   !default;
 $var-prefix-base    : base.$var-prefix                      !default;
 $var: make-var($var-prefix, $var-prefix-base);
 
-$font-size          : var(#{gen.$cssvar}font-size)          !default;
-$font-family        : var(#{gen.$cssvar}font-family)        !default;
-$font-weight        : var(#{gen.$cssvar}font-weight)        !default;
-$font-style         : var(#{gen.$cssvar}font-style)         !default;
-$text-decoration    : var(#{gen.$cssvar}text-decoration)    !default;
-$lineheight         : var(#{gen.$cssvar}lineheight)         !default;
+$font-size              : inherit                           !default;
+$font-family            : inherit                           !default;
+$font-weight            : inherit                           !default;
+$font-style             : inherit                           !default;
+$text-decoration        : inherit                           !default;
+$line-height            : inherit                           !default;
 
-$color              : var(#{gen.$cssvar}color)              !default;
+$color                  : inherit                           !default;
 
-$margin-top         : unset                                 !default;
-$margin-bottom      : calc(var(#{$cssvar}font-size) * 1.00) !default;
-$margin-left        : unset                                 !default;
-$margin-right       : unset                                 !default;
+$margin-block-start     : 0px                               !default;
+$margin-block-end       : 1em                               !default;
+$margin-inline-start    : 0px                               !default;
+$margin-inline-end      : 0px                               !default;
 
 
 
-@include declare-cssvar($var-root) {
-    #{$cssvar}font-size         : #{$font-size};
-    #{$cssvar}font-family       : #{$font-family};
-    #{$cssvar}font-weight       : #{$font-weight};
-    #{$cssvar}font-style        : #{$font-style};
-    #{$cssvar}text-decoration   : #{$text-decoration};
-    #{$cssvar}lineheight        : #{$lineheight};
+@include declare-vars($var-root) {
+    #{$var}font-size                : $font-size;
+    #{$var}font-family              : $font-family;
+    #{$var}font-weight              : $font-weight;
+    #{$var}font-style               : $font-style;
+    #{$var}text-decoration          : $text-decoration;
+    #{$var}line-height              : $line-height;
 
-    #{$cssvar}color             : #{$color};
+    #{$var}color                    : $color;
     
-    #{$cssvar}margin-top        : #{$margin-top};
-    #{$cssvar}margin-bottom     : #{$margin-bottom};
-    #{$cssvar}margin-left       : #{$margin-left};
-    #{$cssvar}margin-right      : #{$margin-right};
+    #{$var}margin-block-start       : $margin-block-start;
+    #{$var}margin-block-end         : $margin-block-end;
+    #{$var}margin-inline-start      : $margin-inline-start;
+    #{$var}margin-inline-end        : $margin-inline-end;
 }
 
 
 
-/* begin: general style */
-@mixin style {
-    @if ($include) { @include  base.style; }
-    @else          { @extend #{base.$alias} !optional; }
+@mixin style($var: $var) {
+    @include base.style($var: $var);
 
 
-    font-size       : var(#{$cssvar}font-size);
-    font-family     : var(#{$cssvar}font-family);
-    font-weight     : var(#{$cssvar}font-weight);
-    font-style      : var(#{$cssvar}font-style);
-    text-decoration : var(#{$cssvar}text-decoration);
-    line-height     : var(#{$cssvar}lineheight);
-
-    color           : var(#{$cssvar}color);
+    display              : block;
     
-    &:not(:first-child) { margin-top    : var(#{$cssvar}margin-top); }
-    &:not(:last-child)  { margin-bottom : var(#{$cssvar}margin-bottom); }
-    margin-left     : var(#{$cssvar}margin-left);
-    margin-right    : var(#{$cssvar}margin-right);
+
+    margin-block-start   : var(#{$var}margin-block-start);
+    margin-block-end     : var(#{$var}margin-block-end);
+    margin-inline-start  : var(#{$var}margin-inline-start);
+    margin-inline-end    : var(#{$var}margin-inline-end);
 }
-/* end: general style */
 
 
 

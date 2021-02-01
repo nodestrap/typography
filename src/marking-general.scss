@@ -3,9 +3,10 @@
 
 
 
-@use "dependencies" as *;
-@use "base"         as base;
-@use "general"      as gen;
+@use "~@nodestrap/sass-class-template/src/index" as *;
+
+@use "base"                                      as base;
+@use "general"                                   as gen;
 
 
 
@@ -17,34 +18,50 @@ $var: make-var($var-prefix, $var-prefix-base);
 
 
 
-@include declare-cssvar($var-root) {
+@include declare-vars($var-root) {
 }
 
 
 
-/* begin: general style */
 @mixin style {
+    // @include base.style;
+
+    
+    %marking-general-base {
+        display         : inline;
+    }
+
+
     del, s {
-        text-decoration: line-through;
+        @extend %marking-general-base;
+
+        text-decoration : line-through;
     }
 
     ins, u {
-        text-decoration: underline;
+        @extend %marking-general-base;
+        
+        text-decoration : underline;
     }
 
     small, .small {
-        font-size: var(#{gen.$cssvar}font-size-sm);
+        @extend %marking-general-base;
+        
+        font-size       : var(#{gen.$var}font-size-sm);
     }
 
     strong, b {
-        font-weight: var(#{gen.$cssvar}font-weight-bolder);
+        @extend %marking-general-base;
+        
+        font-weight     : var(#{gen.$var}font-weight-bolder);
     }
 
     em, i {
-        font-style: italic;
+        @extend %marking-general-base;
+        
+        font-style      : italic;
     }
 }
-/* end: general style */
 
 
 

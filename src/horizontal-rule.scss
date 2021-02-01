@@ -3,9 +3,11 @@
 
 
 
-@use "dependencies" as *;
-@use "base"         as base;
-@use "general"      as gen;
+@use "~@nodestrap/sass-class-template/src/index" as *;
+@use "~@nodestrap/border/src/index"              as border;
+@use "~@nodestrap/spacer/src/index"              as spacer;
+
+@use "base"                                      as base;
 
 
 
@@ -15,52 +17,52 @@ $var-prefix         : "hr"                                  !default;
 $var-prefix-base    : base.$var-prefix                      !default;
 $var: make-var($var-prefix, $var-prefix-base);
 
-$color              : var(#{gen.$cssvar}color)              !default;
-$opacity            : 0.25                                  !default;
+$color                  : inherit                           !default;
+$opacity                : 0.25                              !default;
 
-$height             : var(#{$border-cssvar}hair)            !default;
+$width                  : var(#{border.$var}hair)           !default;
 
-$margin-top         : var(#{$spacer-cssvar}default)         !default;
-$margin-bottom      : var(#{$spacer-cssvar}default)         !default;
-$margin-left        : unset                                 !default;
-$margin-right       : unset                                 !default;
+$margin-block-start     : var(#{spacer.$var}default)        !default;
+$margin-block-end       : var(#{spacer.$var}default)        !default;
+$margin-inline-start    : 0px                               !default;
+$margin-inline-end      : 0px                               !default;
 
 
 
-@include declare-cssvar($var-root) {
-    #{$cssvar}color         : #{$color};
-    #{$cssvar}opacity       : #{$opacity};
+@include declare-vars($var-root) {
+    #{$var}color                    : $color;
+    #{$var}opacity                  : $opacity;
 
-    #{$cssvar}height        : #{$height};
+    #{$var}width                    : $width;
 
-    #{$cssvar}margin-top    : #{$margin-top};
-    #{$cssvar}margin-bottom : #{$margin-bottom};
-    #{$cssvar}margin-left   : #{$margin-left};
-    #{$cssvar}margin-right  : #{$margin-right};
+    #{$var}margin-block-start       : $margin-block-start;
+    #{$var}margin-block-end         : $margin-block-end;
+    #{$var}margin-inline-start      : $margin-inline-start;
+    #{$var}margin-inline-end        : $margin-inline-end;
 }
 
 
 
-/* begin: general style */
-@mixin style {
-    @if ($include) { @include  base.style; }
-    @else          { @extend #{base.$alias} !optional; }
+@mixin style($var: $var) {
+    @include base.style($var: $var);
 
 
-    color               : inherit; // Reset Firefox's gray color
-    background-color    : var(#{$cssvar}color);
-    opacity             : var(#{$cssvar}opacity);
+    display              : block;
 
-    height              : var(#{$cssvar}height);
 
-    margin-top          : var(#{$cssvar}margin-top);
-    margin-bottom       : var(#{$cssvar}margin-bottom);
-    margin-left         : var(#{$cssvar}margin-left);
-    margin-right        : var(#{$cssvar}margin-right);
+    color                : var(#{$var}color);
+    background-color     : currentColor;
+    opacity              : var(#{$var}opacity);
 
-    border              : 0px;
+    height               : var(#{$var}width);
+
+    margin-block-start   : var(#{$var}margin-block-start);
+    margin-block-end     : var(#{$var}margin-block-end);
+    margin-inline-start  : var(#{$var}margin-inline-start);
+    margin-inline-end    : var(#{$var}margin-inline-end);
+
+    border               : 0px;
 }
-/* end: general style */
 
 
 

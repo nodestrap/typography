@@ -3,13 +3,13 @@
 
 
 
-@use "dependencies" as *;
-@use "base"         as base;
-@use "general"      as gen;
-@use "heading"      as head;
+@use "~@nodestrap/sass-class-template/src/index" as *;
 
+@use "base"                                      as base;
+@use "general"                                   as gen;
+@use "heading"                                   as head;
 
-@use "sass:map"     as map;
+@use "sass:map"                                  as map;
 
 
 
@@ -19,13 +19,13 @@ $var-prefix         : "disp"                                !default;
 $var-prefix-base    : base.$var-prefix                      !default;
 $var: make-var($var-prefix, $var-prefix-base);
 
-$font-size-6        : calc(2.50 * var(#{gen.$cssvar}font-size-default)) !default;
-$font-size-5        : calc(3.00 * var(#{gen.$cssvar}font-size-default)) !default;
-$font-size-4        : calc(3.50 * var(#{gen.$cssvar}font-size-default)) !default;
-$font-size-3        : calc(4.00 * var(#{gen.$cssvar}font-size-default)) !default;
-$font-size-2        : calc(4.50 * var(#{gen.$cssvar}font-size-default)) !default;
-$font-size-1        : calc(5.00 * var(#{gen.$cssvar}font-size-default)) !default;
-$font-sizes         : ()                                                !default;
+$font-size-6        : calc(2.50 * var(#{gen.$var}font-size-default)) !default;
+$font-size-5        : calc(3.00 * var(#{gen.$var}font-size-default)) !default;
+$font-size-4        : calc(3.50 * var(#{gen.$var}font-size-default)) !default;
+$font-size-3        : calc(4.00 * var(#{gen.$var}font-size-default)) !default;
+$font-size-2        : calc(4.50 * var(#{gen.$var}font-size-default)) !default;
+$font-size-1        : calc(5.00 * var(#{gen.$var}font-size-default)) !default;
+$font-sizes         : ()                                             !default;
 $font-sizes: map.merge((
     6      : $font-size-6,
     5      : $font-size-5,
@@ -35,92 +35,49 @@ $font-sizes: map.merge((
     1      : $font-size-1,
 ), $font-sizes);
 
-$font-family                    : var(#{head.$cssvar}font-family)       !default;
-$font-weight                    : 300                                   !default;
-$font-style                     : var(#{head.$cssvar}font-style)        !default;
-$text-decoration                : var(#{head.$cssvar}text-decoration)   !default;
-$lineheight                     : var(#{head.$cssvar}lineheight)        !default;
+$font-family            : var(#{head.$var}font-family)      !default;
+$font-weight            : 300                               !default;
+$font-style             : var(#{head.$var}font-style)       !default;
+$text-decoration        : var(#{head.$var}text-decoration)  !default;
+$line-height            : var(#{head.$var}line-height)      !default;
 
-$color                          : var(#{head.$cssvar}color)             !default;
+$color                  : var(#{head.$var}color)            !default;
 
-$margin-top                     : var(#{head.$cssvar}margin-top)        !default;
-$margin-bottom                  : calc(var(#{$cssvar}font-size) * 0.75) !default;
-$margin-left                    : var(#{head.$cssvar}margin-left)       !default;
-$margin-right                   : var(#{head.$cssvar}margin-right)      !default;
+$margin-block-start     : var(#{head.$var}margin-block-start)  !default;
+$margin-block-end       : var(#{head.$var}margin-block-end)    !default;
+$margin-inline-start    : var(#{head.$var}margin-inline-start) !default;
+$margin-inline-end      : var(#{head.$var}margin-inline-end)   !default;
 
 
 
-@include declare-cssvar($var-root) {
+@include declare-vars($var-root) {
     @each $name, $value in $font-sizes {
-        #{$cssvar}font-size-#{$name}    : #{$value};
+        #{$var}font-size-#{$name}   : $value;
     }
 
-    #{$cssvar}font-family       : #{$font-family};
-    #{$cssvar}font-weight       : #{$font-weight};
-    #{$cssvar}font-style        : #{$font-style};
-    #{$cssvar}text-decoration   : #{$text-decoration};
-    #{$cssvar}lineheight        : #{$lineheight};
+    #{$var}font-family              : $font-family;
+    #{$var}font-weight              : $font-weight;
+    #{$var}font-style               : $font-style;
+    #{$var}text-decoration          : $text-decoration;
+    #{$var}line-height              : $line-height;
 
-    #{$cssvar}color             : #{$color};
+    #{$var}color                    : $color;
 
-    #{$cssvar}margin-top        : #{$margin-top};
-    #{$cssvar}margin-bottom     : #{$margin-bottom};
-    #{$cssvar}margin-left       : #{$margin-left};
-    #{$cssvar}margin-right      : #{$margin-right};
+    #{$var}margin-block-start       : $margin-block-start;
+    #{$var}margin-block-end         : $margin-block-end;
+    #{$var}margin-inline-start      : $margin-inline-start;
+    #{$var}margin-inline-end        : $margin-inline-end;
 }
 
 
 
-/* begin: division class */
-@mixin _style-of($level, $include) {
-    // explicitly includes from abstract parent class
-    @if ($include) { @include style; }
-    @else          { @extend #{$alias} !optional; }
-
-
-    @if (not map.has-key($font-sizes, $level)) { @error "#{$level} is not found."; }
-
-    #{$cssvar}font-size : var(#{$cssvar}font-size-#{$level});
+/// @param {number} $level the display level (1 to 6).
+@mixin style($level: null, $var: $var) {
+    @include head.style($level: $level, $var: $var, $font-sizes: $font-sizes);
 }
-@mixin style-of($level) {
-    @include _style-of($level, true);
+
+
+
+@each $level, $size in $font-sizes {
+    @include class("#{$class}#{$level}") { @include style($level: $level); }
 }
-@each $level, $value in $font-sizes {
-    @include alias-of($alias, $level) {
-        @include _style-of($level, false);
-    }
-
-
-    @include class(part-combine($alias, #{$level}), #{$level}, $class);
-}
-/* end: division class */
-
-
-
-/* begin: general style */
-@mixin style {
-    @if ($include) { @include  base.style; }
-    @else          { @extend #{base.$alias} !optional; }
-
-
-    font-size       : var(#{$cssvar}font-size);
-    font-family     : var(#{$cssvar}font-family);
-    font-weight     : var(#{$cssvar}font-weight);
-    font-style      : var(#{$cssvar}font-style);
-    text-decoration : var(#{$cssvar}text-decoration);
-    line-height     : var(#{$cssvar}lineheight);
-
-    color           : var(#{$cssvar}color);
-
-    &:not(:first-child) { margin-top    : var(#{$cssvar}margin-top); }
-    &:not(:last-child)  { margin-bottom : var(#{$cssvar}margin-bottom); }
-    margin-left     : var(#{$cssvar}margin-left);
-    margin-right    : var(#{$cssvar}margin-right);
-}
-/* end: general style */
-
-
-
-// abstract class => no emit class
-// implemented in sub-class display-1 to display-6
-// @include class($class) { @include style; }
